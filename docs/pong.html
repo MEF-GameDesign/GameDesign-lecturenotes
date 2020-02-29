@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 PONG | ARC Game Design</title>
+  <meta name="description" content="ARC Lecture Notes" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 PONG | ARC Game Design" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="ARC Lecture Notes" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 PONG | ARC Game Design" />
+  
+  <meta name="twitter:description" content="ARC Lecture Notes" />
+  
+
+<meta name="author" content="Özgün Balaban" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MBL617 Theory and Methods in Digital Heritage</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Lecture Note</a></li>
+<li class="chapter" data-level="2" data-path="pong.html"><a href="pong.html"><i class="fa fa-check"></i><b>2</b> PONG</a><ul>
+<li class="chapter" data-level="2.1" data-path="pong.html"><a href="pong.html#getting-started"><i class="fa fa-check"></i><b>2.1</b> Getting Started</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="pong.html"><a href="pong.html#section"><i class="fa fa-check"></i><b>2.1.1</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="pong.html"><a href="pong.html#drawing-shapes-to-the-screen"><i class="fa fa-check"></i><b>2.2</b> Drawing Shapes to the Screen</a></li>
+<li class="chapter" data-level="2.3" data-path="pong.html"><a href="pong.html#user-input"><i class="fa fa-check"></i><b>2.3</b> User Input</a></li>
+<li class="chapter" data-level="2.4" data-path="pong.html"><a href="pong.html#player-bounds"><i class="fa fa-check"></i><b>2.4</b> Player Bounds</a></li>
+<li class="chapter" data-level="2.5" data-path="pong.html"><a href="pong.html#ball-movement"><i class="fa fa-check"></i><b>2.5</b> Ball Movement</a></li>
+<li class="chapter" data-level="2.6" data-path="pong.html"><a href="pong.html#bouncing-from-the-sides"><i class="fa fa-check"></i><b>2.6</b> Bouncing from the sides</a></li>
+<li class="chapter" data-level="2.7" data-path="pong.html"><a href="pong.html#collider-for-ball-and-paddles"><i class="fa fa-check"></i><b>2.7</b> Collider for Ball and Paddles</a></li>
+<li class="chapter" data-level="2.8" data-path="pong.html"><a href="pong.html#score"><i class="fa fa-check"></i><b>2.8</b> Score</a></li>
+<li class="chapter" data-level="2.9" data-path="pong.html"><a href="pong.html#score-update-and-ui"><i class="fa fa-check"></i><b>2.9</b> Score update and UI</a></li>
+<li class="chapter" data-level="2.10" data-path="pong.html"><a href="pong.html#sound"><i class="fa fa-check"></i><b>2.10</b> Sound</a></li>
+<li class="chapter" data-level="2.11" data-path="pong.html"><a href="pong.html#assignment"><i class="fa fa-check"></i><b>2.11</b> Assignment</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ARC Game Design</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pong" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> PONG</h1>
+<p>Pong is a table tennis sports game featuring simple two-dimensional graphics, manufactured by Atari
+and originally released in 1972.</p>
+<div class="figure">
+<img src="Images/pong.gif" alt="PONG" />
+<p class="caption">PONG</p>
+</div>
+<p>In this course we are going to build PONG in UNITY.</p>
+<div id="getting-started" class="section level2">
+<h2><span class="header-section-number">2.1</span> Getting Started</h2>
+<p>First step is installing Unity. We installed Unity v. 2019.3 and for C# we are using Jetbrains Rider.</p>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> </h3>
+<p>After installing Unity, create a new project from Unity Hub. Set the following fields:</p>
+<ul>
+<li>Templates: Select 2D template<br />
+</li>
+<li>Project Name: You can name as Pong or any other name<br />
+</li>
+<li>Location: Select a folder</li>
+</ul>
+<div class="figure">
+<img src="Images/newproject.png" alt="New Project Settings" />
+<p class="caption">New Project Settings</p>
+</div>
+<p>Now looking at the game Pong we should list first what we need to do.</p>
+<ul>
+<li>Draw shapes to the screen (paddles and ball)</li>
+<li>Control 2D position of paddles based on input</li>
+<li>Collision detection between paddles and ball to deflect ball back toward opponent</li>
+<li>Collision detection between ball and map boundaries to keep ball within vertical bounds and to detect score (outside horizontal bounds)</li>
+<li>Sound effects when ball hits paddles/walls or when a point is scored for flavor</li>
+<li>Scorekeeping to determine winner</li>
+</ul>
+</div>
+</div>
+<div id="drawing-shapes-to-the-screen" class="section level2">
+<h2><span class="header-section-number">2.2</span> Drawing Shapes to the Screen</h2>
+<p>When you first start Unity, you should first arrange your workspace so that you can work more efficiently. First select <strong>“Tall”</strong> from the tab in the top right corner as seen in the image below.</p>
+<div class="figure">
+<img src="Images/Setting.png" alt="Tall Workspace" />
+<p class="caption">Tall Workspace</p>
+</div>
+<p>You can drag the <strong>Game window</strong> to the bottom of the <strong>Screen window</strong> to have a workspace similar to the image.</p>
+<div class="figure">
+<img src="Images/Setting2.png" alt="Professional Workspace" />
+<p class="caption">Professional Workspace</p>
+</div>
+<p>Now from the bottom of the <strong>Game window</strong> set the aspect ratio of the game. Aspect ratio adjusts the resolution of the game and ensures it looks same in all the devices.</p>
+<p>Set the aspect ratio as Standalone 1024 X 768.</p>
+<div class="figure">
+<img src="Images/aspectRatio.png" alt="Aspect ratio – Standalone 1024 x 768" />
+<p class="caption">Aspect ratio – Standalone 1024 x 768</p>
+</div>
+<p>Now in Unity window we have five windows open.</p>
+<ul>
+<li>Scene Window: Here we control the geometries that we are creating. You can manipulate objects here.</li>
+<li>Game window: Here you play your games and inspect if everything works as expected.</li>
+<li>Hierarchy: Here is the objects that are in the scenes.</li>
+<li>Project: Project window holds your files such as assets, scripts etc.</li>
+<li>Inspector: In the inspector window you can access properties of all object that you are manipulating.</li>
+</ul>
+<p>First let’s rename and save our scene. In the <strong>Project window</strong> select SampleScene and rename it as Game. After the change Unity will ask you to reload the scene.</p>
+<p>Now we can click to camera and change the background color to black from the <strong>Inspector window</strong>.</p>
+<div class="figure">
+<img src="Images/Backgrounf.png" alt="Changing the background color" />
+<p class="caption">Changing the background color</p>
+</div>
+<p>Now, we are going to create the sprites that we will use in our game. Sprites are 2D graphics that are used in the games. For the two paddle and the ball used in the game we will use a square sprite.</p>
+<p>Right click <strong>Project window</strong> from the menu click &gt;Create&gt;Sprites&gt;Square</p>
+<div class="figure">
+<img src="Images/creatingSprite.png" alt="Creating a square sprite" />
+<p class="caption">Creating a square sprite</p>
+</div>
+<p>We will create our players by using the square sprite. First drag square sprite into the hierarchy window and name it as Player 1.</p>
+<div class="figure">
+<img src="Images/Player1.png" alt="Player1 sprite" />
+<p class="caption">Player1 sprite</p>
+</div>
+<p>Next, we need to scale the sprite so that it becomes a rectange. Select player 1 sprite and from the inspector window, set X scale to 0.5 and y scale to 2.</p>
+<div class="figure">
+<img src="Images/Player1-scale.png" alt="Scaling Player1 sprite" />
+<p class="caption">Scaling Player1 sprite</p>
+</div>
+<p>Player1 should be at the left side of the screen so let’s change the position of the Player1. Set the X position to -6.4.</p>
+<div class="figure">
+<img src="Images/Player1-position.png" alt="Changing the location of Player1 sprite" />
+<p class="caption">Changing the location of Player1 sprite</p>
+</div>
+<p>Next, we should create Player 2. To do this, right click on Player 1 and select duplicate. From the inspector window, change the name to “Player2” and X position to 6.4 to move Player 2 to the right side of the screen.</p>
+<div class="figure">
+<img src="Images/Player2.png" alt="Player2 sprite" />
+<p class="caption">Player2 sprite</p>
+</div>
+<p>Lastly, we should create the ball from the sprite. Drag square to <strong>Hierarchy window</strong>. Click over the sprite and change the name to ball. Next, change the scale of X and Y to 0.3.</p>
+<div class="figure">
+<img src="Images/Ball.png" alt="Ball sprite" />
+<p class="caption">Ball sprite</p>
+</div>
+<p>And to gather Player1 and Player2 in one folder create an empty GameObject by right clicking <strong>Hierarchy window</strong> &gt;Create Empty.
+Name it as Paddles and drag Player1 and Player2 into it.</p>
+<div class="figure">
+<img src="Images/Paddles.png" alt="Empty Paddles GameObject" />
+<p class="caption">Empty Paddles GameObject</p>
+</div>
+</div>
+<div id="user-input" class="section level2">
+<h2><span class="header-section-number">2.3</span> User Input</h2>
+<p>In the last step, we have created our paddles and the ball. However, they are static and they don’t move with input. So let’s connect the paddles to user input.</p>
+<p>First, we should setup the controls to be used in the game.</p>
+<p>From Edit Menu click &gt;Edit&gt;Project Settings.</p>
+<p>Select Input Manager from the left side of the window. And duplicate Vertical Axes by right clicking over it.</p>
+<div class="figure">
+<img src="Images/InputManager.png" alt="Duplicate Vertical Axes" />
+<p class="caption">Duplicate Vertical Axes</p>
+</div>
+<p>Change the vertical Axes to Player1 by changing the name. Player1 will use w for up and s for down. So set the <strong>Negative Button</strong> as s and set <strong>Positive Button</strong> as w. Delete alt negative and alt positive buttons.</p>
+<div class="figure">
+<img src="Images/Player1controls.png" alt="Player1 controls w for up and s for down" />
+<p class="caption">Player1 controls w for up and s for down</p>
+</div>
+<p>Similarly, change the other vertical axes as Player2 and set the <strong>Negative Button</strong> as down and set <strong>Positive Button</strong> as up. Delete alt negative and alt positive buttons.</p>
+<div class="figure">
+<img src="Images/Player2controls.png" alt="Player1 controls up for up and down for down" />
+<p class="caption">Player1 controls up for up and down for down</p>
+</div>
+<p>To control the paddles using the input buttons we should create a C# script. Right Click on Project Window and &gt;Create&gt;C# Script</p>
+<div class="figure">
+<img src="Images/createScript.png" alt="Create Paddle Script" />
+<p class="caption">Create Paddle Script</p>
+</div>
+<p>Name the script as Paddle and double click it. Double clicking a script file will bring up C# editor. It can be Jetbrains rider or Visual Studio Code according to your installation.</p>
+<p>First, we should setup our variables. We will use three variables.</p>
+<ul>
+<li>_speed: holds the speed of the movement of the paddles</li>
+<li>player1: refers GameObject of Player1</li>
+<li>player2: refers GameObject of Player1</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">[SerializeField] <span class="kw">private</span> <span class="dt">float</span> _speed = 4f;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">[SerializeField] GameObject player1;</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">[SerializeField] GameObject player2;</a></code></pre></div>
+<p>SerializeField in Unity means any variable that we have created will be accessible in the Unity interface. For more info: <a href="https://docs.unity3d.com/ScriptReference/SerializeField.html" class="uri">https://docs.unity3d.com/ScriptReference/SerializeField.html</a></p>
+<p>After setting up our variable we can create Update() method.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">// player1 - left player - movements</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="dt">float</span> verticalInput1 = Input.<span class="fu">GetAxis</span>(<span class="st">&quot;Player1&quot;</span>);</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">Vector3 direction1 = <span class="kw">new</span> <span class="fu">Vector3</span>(<span class="dv">0</span>, verticalInput1, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">player1.<span class="fu">transform</span>.<span class="fu">Translate</span>(Time.<span class="fu">deltaTime</span> * _speed * direction1);</a></code></pre></div>
+<p>Here verticalInput1 receives the movement from the Player1 axes that we have created. According to the values we get, we create a direction1 vector3 which only receives values for Y axis since our player1 only moves up and down. And finally we move player1 every second.</p>
+<p>We repeat the same code for player2:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">// Player 2 - right player - movements </span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">float</span> verticalInput2 = Input.<span class="fu">GetAxis</span>(<span class="st">&quot;Player2&quot;</span>);</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">Vector3 direction2 = <span class="kw">new</span> <span class="fu">Vector3</span>(<span class="dv">0</span>, verticalInput2, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">player2.<span class="fu">transform</span>.<span class="fu">Translate</span>(Time.<span class="fu">deltaTime</span> * _speed * direction2);</a></code></pre></div>
+<p>Now we need to associate Paddle script with PaddleS folder we have created. Drag the Paddle script from the <strong>Project Window</strong> to <strong>Hierarchy Window</strong> and drop it over the Paddles folder. Click on the Paddles folder and from the inspector window check if you can see Paddle (Script). Now drag Player1 from the <strong>Hierarchy Window</strong> to Player1 in Inspector and repeat this for Player2.</p>
+<div class="figure">
+<img src="Images/AssociateScript.png" alt="Associate the script with Paddles" />
+<p class="caption">Associate the script with Paddles</p>
+</div>
+<p>Finally, if we click the play button, the game starts and we can control our paddles.</p>
+<div class="figure">
+<img src="Images/PaddleScript.png" alt="Paddle Script with the controls" />
+<p class="caption">Paddle Script with the controls</p>
+</div>
+</div>
+<div id="player-bounds" class="section level2">
+<h2><span class="header-section-number">2.4</span> Player Bounds</h2>
+<p>In the last section, we set up movements with the keyboard input. However, the paddles can go out of the bounds of the game space. We need to restrict the movement of the paddles to the screen size.</p>
+<p>To achieve this we need to include two <strong>if</strong> statements to check if the paddles are at the top or bottom of the screen.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">if</span> (player1.<span class="fu">transform</span>.<span class="fu">position</span>.<span class="fu">y</span> &lt; <span class="fl">-3.9</span> &amp;&amp; verticalInput1 &lt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  verticalInput1 = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">else</span> <span class="kw">if</span> (player1.<span class="fu">transform</span>.<span class="fu">position</span>.<span class="fu">y</span> &gt; <span class="fl">3.9</span> &amp;&amp; verticalInput1 &gt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  verticalInput1 = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">}</a></code></pre></div>
+<p>Here the first if clause checks if player1’s position is at the top of the screen which is -3.9, if it then the code sets the speed of the paddle to 0 which stops the movement. Similarly there is an another if statement which checks if player1 is at the bottom of the screen and again this also stops the paddle which ensures the paddle stays inside the screen.</p>
+<p>We need to do the same check for player2 which makes the code like below.</p>
+<div class="figure">
+<img src="Images/Bounds.png" alt="Script change to keep paddles inside the screen" />
+<p class="caption">Script change to keep paddles inside the screen</p>
+</div>
+</div>
+<div id="ball-movement" class="section level2">
+<h2><span class="header-section-number">2.5</span> Ball Movement</h2>
+<p>Now, we should make the ball move. For this we will create a ball script. Right click the <strong>Project Window</strong> &gt;Create&gt;C# Script and name it as ball.</p>
+<p>To make it tidier in the Project Window, create a folder and name it as Scripts and put Ball and Paddle script inside the Scripts folder.</p>
+<p>We should start the game by hitting a key which will serve the ball. First, we should set the variables:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1">[SerializeField] <span class="kw">private</span> <span class="dt">float</span> _speed = 4f;</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">private</span> <span class="dt">bool</span> serve = <span class="kw">true</span>;  <span class="co">// boolean to indicate serve action</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">private</span> <span class="dt">bool</span> end = <span class="kw">false</span>;  <span class="co">// game ends</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">private</span> Vector3 direction; <span class="co">// direction of the ball</span></a></code></pre></div>
+<ul>
+<li>_speed: controls the speed of the ball.</li>
+<li>serve: Indicates the serve state</li>
+<li>end: indicates the end state which ends the game</li>
+<li>direction: direction of the ball as Vector3</li>
+</ul>
+<p>Next we should create our code, if the state is serve and someone presses Enter the ball should start moving in a random direction.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">if</span> (Input.<span class="fu">GetKeyDown</span>(KeyCode.<span class="fu">Return</span>) &amp;&amp; serve)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">  direction = <span class="kw">new</span> <span class="fu">Vector3</span>(Random.<span class="fu">Range</span>(-<span class="fl">4.0f</span>, 4f), Random.<span class="fu">Range</span>(-<span class="fl">8.0f</span>, 8f), <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">  serve = <span class="kw">false</span>;</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="kw">if</span> (!serve)</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">  transform.<span class="fu">Translate</span>(Time.<span class="fu">deltaTime</span> * _speed * direction);</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">}</a></code></pre></div>
+<p>After creating this script, we should drag the ball script over the ball GameObject. If we start the game, with a press to Return key the ball starts moving. However, since we did not set up the boundary to the ball it goes out of bounds.</p>
+<div class="figure">
+<img src="Images/BallScript.png" alt="Ball Script" />
+<p class="caption">Ball Script</p>
+</div>
+<p>Next we will set up the boundary for the ball to bounce from the sides of the screen.</p>
+</div>
+<div id="bouncing-from-the-sides" class="section level2">
+<h2><span class="header-section-number">2.6</span> Bouncing from the sides</h2>
+<p>For this the y position of the ball should be between -4.8 and 4.8. We will put two if conditionals; if the y position of the ball is bigger than 4.8, ball’s direction should flip in the y direction. Similarly, if the y position of the ball is lesser than -4.8 ball’s direction should flip in the y direction as well.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">if</span> (transform.<span class="fu">position</span>.<span class="fu">y</span> &gt; <span class="fl">4.8</span> &amp;&amp; direction.<span class="fu">y</span> &gt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  direction.<span class="fu">y</span> = -direction.<span class="fu">y</span>;</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">if</span> (transform.<span class="fu">position</span>.<span class="fu">y</span> &lt; <span class="fl">-4.8</span> &amp;&amp; direction.<span class="fu">y</span> &lt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">  direction.<span class="fu">y</span> = -direction.<span class="fu">y</span>;</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">}</a></code></pre></div>
+<p>By adding these clauses will ensure that the ball stays in the boundary of the screen.</p>
+<div class="figure">
+<img src="Images/BallBoundary.png" alt="Keep the ball inside the boundary" />
+<p class="caption">Keep the ball inside the boundary</p>
+</div>
+</div>
+<div id="collider-for-ball-and-paddles" class="section level2">
+<h2><span class="header-section-number">2.7</span> Collider for Ball and Paddles</h2>
+<p>The game is still not playable since it does not collide with the paddles. We should add rigidbody2d and box collider to the player1 &amp; player2 gameObjects and to the ball gameobject. To add rigidbody2d to player1, we click on the player1 in the <strong>Hierarchy Window</strong> and from the <strong>Inspector Window</strong> we click on add component and type rigidbody2d.</p>
+<div class="figure">
+<img src="Images/AddComponent.png" alt="Add Component" />
+<p class="caption">Add Component</p>
+</div>
+<p>In the rigidbody2d, in Body Type tab select Kinematic. Kinematic ensures there is no gravity and all the movements occur according to our control.</p>
+<div class="figure">
+<img src="Images/Rigidbody2d.png" alt="Rigidbody2 - Kinematic" />
+<p class="caption">Rigidbody2 - Kinematic</p>
+</div>
+<p>After adding rigidbody2d to all three gameObjects, we should add boxCollider2d for them as well. From the same place that we added rigidbody2d this time we add boxcollider2d.</p>
+<div class="figure">
+<img src="Images/BoxCollider2d.png" alt="BoxCollider2D" />
+<p class="caption">BoxCollider2D</p>
+</div>
+<p>In the BoxCollider2d menu we should select IsTrigger option.</p>
+<div class="figure">
+<img src="Images/IsTrigger.png" alt="Is Trigger" />
+<p class="caption">Is Trigger</p>
+</div>
+<p>After adding rigidbody2d and boxcollider2d, now we should handle the code. Openning up ball script, we create OnTriggerEnter2D method. This methods calls up when two objects collide.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">OnTriggerEnter2D</span>(Collider2D other)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  direction.<span class="fu">x</span> = -direction.<span class="fu">x</span>;</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">}</a></code></pre></div>
+<p>This is a very simple method. It flips the direction of the ball when there is a collision between the ball and the paddle. So the new ball script is:</p>
+<div class="figure">
+<img src="Images/BallScript2.png" alt="Updated Ball Script" />
+<p class="caption">Updated Ball Script</p>
+</div>
+</div>
+<div id="score" class="section level2">
+<h2><span class="header-section-number">2.8</span> Score</h2>
+<p>Next, we should be able to determine if there is a score and reset the game if there is a score, starting the game from the center of the screen with a key press again.</p>
+<p>To keep up the score we create two new variables:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">private</span> <span class="dt">int</span> player1Score = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">private</span> <span class="dt">int</span> player2Score = <span class="dv">0</span>;</a></code></pre></div>
+<p>We will include a code to check the position of the ball and if the ball’s position is lesser than -6.7, means the ball has left the screen from the left thus player2 wins a score. If that happens we call the reset method and increase player2 score. If the score is 15 then the game ends, else the ball is returned to the center to be served again,</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">if</span> (transform.<span class="fu">position</span>.<span class="fu">x</span> &lt; <span class="fl">-6.7</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">  player2Score++;</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="fu">Reset</span>();</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">  <span class="kw">if</span> (player2Score == <span class="dv">15</span>)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">  {</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">    end = <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">  } <span class="kw">else</span> {serve = <span class="kw">true</span>;}</a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">}</a></code></pre></div>
+<p>Reset method just centers the ball.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">Reset</span>()</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">  transform.<span class="fu">position</span> = <span class="kw">new</span> <span class="fu">Vector3</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">}</a></code></pre></div>
+<p>After adding these codes and repeating the process for the right side, we have the scoring component of the game.</p>
+</div>
+<div id="score-update-and-ui" class="section level2">
+<h2><span class="header-section-number">2.9</span> Score update and UI</h2>
+<p>Next we need to show the scores in User Interface (UI). For this we need to Add Text to the Screen.</p>
+<p>Right clicking <strong>Hierarchy Window</strong>, select &gt;Create&gt;UI&gt;Text.</p>
+<div class="figure">
+<img src="Images/UIText.png" alt="Adding UI Text" />
+<p class="caption">Adding UI Text</p>
+</div>
+<p>We should first name the UI Text as Player1ScoreText.Next we click on the anchor icon and select top, center. And adjust PosX as -150, Pos Y as -100, Text as 0, Font Size as 100, Horizontal Overflow as overflow and Vertical Overflow as overflow as in the image below.</p>
+<div class="figure">
+<img src="Images/Player1ScoreText.png" alt="Setting Up Player 1 Score Text" />
+<p class="caption">Setting Up Player 1 Score Text</p>
+</div>
+<p>We should do the same for Player2, so right click on it and duplicate. Change its name as Player2ScoreText and PosX as 150.</p>
+<p>After this step, we should associate this text and use it in our ball script. So we should add following variables to the code:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb12-1" data-line-number="1">[SerializeField] <span class="kw">private</span> Text player1ScoreText;</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">[SerializeField] <span class="kw">private</span> Text player2ScoreText;</a></code></pre></div>
+<p>And these fields should be updated each time there is a score so we add the following code after the Reset function call.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb13-1" data-line-number="1">player2ScoreText.<span class="fu">text</span> =  player2Score.<span class="fu">ToString</span>();</a></code></pre></div>
+<p>After adding these two code snippets we should click on Ball gameobject and drag Player1ScoreText and Player2ScoreText to its places.</p>
+<p>Finally, our game mechanics works, next we will add sound that plays when there is a collision between the ball and the paddles.</p>
+</div>
+<div id="sound" class="section level2">
+<h2><span class="header-section-number">2.10</span> Sound</h2>
+<p>For the sound, you should download the sound file from Github. Place the paddle_hit file inside the assets folder. Drag the file into the <strong>Hierarchy window</strong>.</p>
+<p>Add a variable in ball script.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb14-1" data-line-number="1">[SerializeField] <span class="kw">private</span> AudioSource _paddleHit;</a></code></pre></div>
+<p>Add the code that plays the sound when there is a collision between the paddles and the ball inside the OnTriggerEnter2D method.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb15-1" data-line-number="1">_paddleHit.<span class="fu">Play</span>();</a></code></pre></div>
+<p>Select the ball gameObject from the <strong>Hierarchy Window</strong> and drag the paddle_hit file to its place in ball script.</p>
+<p>Now the game is ready, play it and enjoy your first game.</p>
+</div>
+<div id="assignment" class="section level2">
+<h2><span class="header-section-number">2.11</span> Assignment</h2>
+<p>Now I want you to improve 5 aspects of the game. Some ideas:</p>
+<ul>
+<li>Change background color, add texture etc.</li>
+<li>Change colors/textures etc. of paddles</li>
+<li>Change some mechanics, the ball gets faster each time etc.</li>
+<li>Add AI to control the paddle – bonus points, hard option</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

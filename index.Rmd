@@ -1,0 +1,37 @@
+--- 
+title: "ARC451 Game Design"
+author: "Özgün Balaban"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "ARC Lecture Notes"
+---
+# Syllabus {#intro}
+
+## Description
+
+This course is an introductory course on understanding what a game is, mechanics of games and game design process. This course aims to present workflows of game devel-opment through discussions of history of games, practical implementations of simple games and a project that includes all aspects game design. 
+
+Throughout the course, each week is divided roughly to three sessions. In the first part, theory of game design will be discussed. In these sessions important games from history will be shown and they will be analyzed critically. Moreover, certain concepts related games will be discussed. In the second sessions, practical knowledge will be presented to the students. Here there will be an introduction to programming, introductions to tools that will be used such as Unity game engine. The second sessions will be followed by in class activity sessions which will include small assignments or project related group work time.
+
+## Evaluation
+
+### In-class assignments – Homework:  
+In the practical sessions in class, there will be an implementation of a small game. These examples will be half-finished at the end of the practical sessions. Students are expected to finish these examples. Assistance will be provided.
+
+### Critical analysis of a game:
+Each student is expected to choose a game and analyze the underlying rule-structures of the game and then visually communicate them to the class.
+
+### Final project:
+For final project, students will form groups three and will create a game and present it. Development of the game will take place throughout the term and students will follow a workflow that is discussed during the lectures. The projects
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
