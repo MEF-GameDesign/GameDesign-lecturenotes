@@ -364,3 +364,7 @@ Now I want you to improve 5 aspects of the game. Some ideas:
 - Change colors/textures etc. of paddles
 - Change some mechanics, the ball gets faster each time etc.
 - Add AI to control the paddle – bonus points, hard option
+
+To submit your work, you need to commit your changes to Github and send me a link of your username and project.
+
+

@@ -27,7 +27,7 @@ In the practical sessions in class, there will be an implementation of a small g
 Each student is expected to choose a game and analyze the underlying rule-structures of the game and then visually communicate them to the class.
 
 ### Final project:
-For final project, students will form groups three and will create a game and present it. Development of the game will take place throughout the term and students will follow a workflow that is discussed during the lectures. The projects
+For final project, students will form groups three and will create a game and present it. Development of the game will take place throughout the term and students will follow a workflow that is discussed during the lectures. The projects will be evaluated according to its creativity, programming value, and mechanics.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

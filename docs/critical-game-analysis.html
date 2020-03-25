@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Critical Game Analysis | ARC451 Game Design</title>
+  <meta name="description" content="ARC Lecture Notes" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Critical Game Analysis | ARC451 Game Design" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="ARC Lecture Notes" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Critical Game Analysis | ARC451 Game Design" />
+  
+  <meta name="twitter:description" content="ARC Lecture Notes" />
+  
+
+<meta name="author" content="Özgün Balaban" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="flappy-bird.html"/>
+<link rel="next" href="additional-resources.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ARC451 Game Design</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#description"><i class="fa fa-check"></i><b>1.1</b> Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#evaluation"><i class="fa fa-check"></i><b>1.2</b> Evaluation</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#in-class-assignments-homework"><i class="fa fa-check"></i><b>1.2.1</b> In-class assignments – Homework:</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#critical-analysis-of-a-game"><i class="fa fa-check"></i><b>1.2.2</b> Critical analysis of a game:</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#final-project"><i class="fa fa-check"></i><b>1.2.3</b> Final project:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="pong.html"><a href="pong.html"><i class="fa fa-check"></i><b>2</b> PONG</a><ul>
+<li class="chapter" data-level="2.1" data-path="pong.html"><a href="pong.html#getting-started"><i class="fa fa-check"></i><b>2.1</b> Getting Started</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="pong.html"><a href="pong.html#section"><i class="fa fa-check"></i><b>2.1.1</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="pong.html"><a href="pong.html#drawing-shapes-to-the-screen"><i class="fa fa-check"></i><b>2.2</b> Drawing Shapes to the Screen</a></li>
+<li class="chapter" data-level="2.3" data-path="pong.html"><a href="pong.html#user-input"><i class="fa fa-check"></i><b>2.3</b> User Input</a></li>
+<li class="chapter" data-level="2.4" data-path="pong.html"><a href="pong.html#player-bounds"><i class="fa fa-check"></i><b>2.4</b> Player Bounds</a></li>
+<li class="chapter" data-level="2.5" data-path="pong.html"><a href="pong.html#ball-movement"><i class="fa fa-check"></i><b>2.5</b> Ball Movement</a></li>
+<li class="chapter" data-level="2.6" data-path="pong.html"><a href="pong.html#bouncing-from-the-sides"><i class="fa fa-check"></i><b>2.6</b> Bouncing from the sides</a></li>
+<li class="chapter" data-level="2.7" data-path="pong.html"><a href="pong.html#collider-for-ball-and-paddles"><i class="fa fa-check"></i><b>2.7</b> Collider for Ball and Paddles</a></li>
+<li class="chapter" data-level="2.8" data-path="pong.html"><a href="pong.html#score"><i class="fa fa-check"></i><b>2.8</b> Score</a></li>
+<li class="chapter" data-level="2.9" data-path="pong.html"><a href="pong.html#score-update-and-ui"><i class="fa fa-check"></i><b>2.9</b> Score update and UI</a></li>
+<li class="chapter" data-level="2.10" data-path="pong.html"><a href="pong.html#sound"><i class="fa fa-check"></i><b>2.10</b> Sound</a></li>
+<li class="chapter" data-level="2.11" data-path="pong.html"><a href="pong.html#assignment"><i class="fa fa-check"></i><b>2.11</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="flappy-bird.html"><a href="flappy-bird.html"><i class="fa fa-check"></i><b>3</b> Flappy Bird</a><ul>
+<li class="chapter" data-level="3.1" data-path="flappy-bird.html"><a href="flappy-bird.html#initial-setup"><i class="fa fa-check"></i><b>3.1</b> Initial Setup</a></li>
+<li class="chapter" data-level="3.2" data-path="flappy-bird.html"><a href="flappy-bird.html#assignment-1"><i class="fa fa-check"></i><b>3.2</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html"><i class="fa fa-check"></i><b>4</b> Critical Game Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#first-step-is-selecting-a-game."><i class="fa fa-check"></i><b>4.1</b> First step is selecting a game.</a></li>
+<li class="chapter" data-level="4.2" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#before-you-start-analysing-play-the-game"><i class="fa fa-check"></i><b>4.2</b> Before you start analysing: play the game</a></li>
+<li class="chapter" data-level="4.3" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#contextualize"><i class="fa fa-check"></i><b>4.3</b> Contextualize</a></li>
+<li class="chapter" data-level="4.4" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#game-overview"><i class="fa fa-check"></i><b>4.4</b> Game Overview</a></li>
+<li class="chapter" data-level="4.5" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#formal-elements"><i class="fa fa-check"></i><b>4.5</b> Formal Elements</a></li>
+<li class="chapter" data-level="4.6" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#round-up-your-discussion"><i class="fa fa-check"></i><b>4.6</b> Round up your discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i><b>5</b> Additional Resources</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ARC451 Game Design</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="critical-game-analysis" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Critical Game Analysis</h1>
+<p>I am going to briefly cover how to do a critical game analysis. However, there are many ways, try to be
+creative.</p>
+<p>Some parts of this text is taken from various sources.</p>
+<p>References:
+- <a href="https://ocw.mit.edu/courses/comparative-media-studies-writing/cms-300-introduction-to-videogame-studies-fall-2011/assignments/game-analysis/MITCMS_300F11_GameAnaGuide.pdf" class="uri">https://ocw.mit.edu/courses/comparative-media-studies-writing/cms-300-introduction-to-videogame-studies-fall-2011/assignments/game-analysis/MITCMS_300F11_GameAnaGuide.pdf</a>
+- <a href="https://learn.canvas.net/courses/3/pages/level-3-dot-2-critical-analysis-of-games" class="uri">https://learn.canvas.net/courses/3/pages/level-3-dot-2-critical-analysis-of-games</a></p>
+<div id="first-step-is-selecting-a-game." class="section level2">
+<h2><span class="header-section-number">4.1</span> First step is selecting a game.</h2>
+<p>You need to first select a game for this study. Try to select a game that will help you in ideation phase for your project.
+It can be because of the graphics, gameplay, controls, theme etc.</p>
+</div>
+<div id="before-you-start-analysing-play-the-game" class="section level2">
+<h2><span class="header-section-number">4.2</span> Before you start analysing: play the game</h2>
+<ul>
+<li>Play the game extensively</li>
+</ul>
+<p>Try to complete the game, or at least familiarize yourself with all the modes. You
+should master the game as much as you can. If you’ve played it before, play it
+again, to have the game fresh in your mind—replay always helps achieving new
+insights about the game. The time you should be playing the game varies from
+game to game. In your analysis, be explicit about how you played the game, if
+there are different options (e.g. level of difficulty, character that you used.)</p>
+<ul>
+<li>Take notes while you play.</li>
+</ul>
+<p>It’s good to keep track of things you come across in the game. What do you like?</p>
+<p>What don’t you like? Is there something that you did not expect? Does a specific
+part of the game remind you of something else (another game, or a movie, or
+some other event)? Taking notes of potential examples for your paper is also a
+good habit. If you can have a corresponding savegame for reference, even better.</p>
+<ul>
+<li>You can take some help such as walktroughs.</li>
+</ul>
+<p>Anyone can get stuck and might need help, especially if it prevents them from
+getting far enough in the game (and therefore from playing it extensively). Cheat
+codes, watching walkthrough videos, or having a friend play for you are ways to
+help you know more about the game, but they should not be the predominant
+mode in which you experience it.</p>
+<ul>
+<li>Read what other people have written about the game</li>
+</ul>
+</div>
+<div id="contextualize" class="section level2">
+<h2><span class="header-section-number">4.3</span> Contextualize</h2>
+<p>Providing a frame of reference to understand your analysis is basic to make it
+accessible to your reader, particularly if they are not familiar with the game.
+Games, like any other media artifacts, are not produced in a void. They are the
+product of their times: the technology available at the moment, the people who
+made them, or other socio-cultural trends that marked that historical moment.</p>
+<ul>
+<li><p>Game Developer/Studio; Artists, Designers, Programmers, Writers (or whoever
+is relevant).
+The creative team of a game is important, particularly in the case where it
+connects to other relevant games they worked on before or after this game. Some
+development studios or designers have certain trademarks, or specialize on a
+particular genre (e.g. Valve, Square Enix or Will Wright), so choosing one of their
+games can mark a specific time in the evolution of their games, which might be
+important to the context of your analysis.</p></li>
+<li><p>Game genre and related games
+A game genre usually has a set of established conventions behind it, such as First
+Person Shooters, adventure games, real-time strategy games or Role-Playing
+Games. Establishing the game within a genre can help determine, for instance,
+why it is like other games of the same type, or what is innovative about it. If the
+game partakes of conventions from different genres, that can also be a way of
+explaining what sets it apart from other games. The relations to other game
+genres do not have to be exclusively digital–board and card games, as well as
+other traditional games, can be the origins of certain mechanics.
+The game of your choice can relate to other games by any of the elements listed
+on these guidelines: developer, genre, publisher, by being released at the same
+time, similar mechanics, similar themes (e.g. space flight simulators), being part
+of a franchise (e.g. Star Wars or Mario), using similar controls, games that it has
+influenced or that later tried to copy it, etc.</p></li>
+<li><p>Technological context
+What platform(s) was the game developed for? It is important to note which
+version of the game you are playing, e.g. Assassin’s Creed for the DS is a different
+game from the PS3 version. The technology will determine, for instance, the
+length of the game or whether there is an ending (think of arcade games in the
+early 80s, where games typically did not end). In other cases, such as the Virtual
+Boy or the Wii, the technology can also shape the way the way the game is played.</p></li>
+<li><p>Socio-historical context
+When was the game made? It’s different to analyze a game from the 70s, when
+videogames were almost exclusively played in arcades, than a recent game, now
+that videogames start to enjoy a more general acceptance in cultural terms.
+Where was it released? A game released in the US in the mid 80s (after the socalled videogame crash) may not have had the same influence as a game released
+in Europe (where videogames were played almost exclusively in home
+computers).</p></li>
+<li><p>Audience
+Who is the game intended for? Games can create communities around them, at
+times fostered by the developers themselves. The fans of a particular game can be
+a phenomenon worth studying in itself, for example, as creators of content for it,
+as critics/reviewers, or as assistants to other players by providing walkthroughs
+or strategy guides. Studying the game community in depth can veer away from
+the textual analysis provided here, so be aware that if you study the community
+you may not be analyzing the game itself. It is a perfectly valid analysis, but
+different from the one proposed here.</p></li>
+<li><p>Relations to other media
+Is the game part of a franchise, a tie-in with a work in another medium (e.g. Lost Via Domus, Wall-E)? Is it an adaptation of the work in another medium, or is it
+only using the same characters and settings? Is it inspired by a situation or
+premise of another medium (e.g. Dead Rising taking the zombies-in-a-mall
+premise of Dawn of the Dead)? Does it incorporate and re-work pre-existing
+stories (e.g. Too Human using Norse mythology as the basis for its story, but
+transposing it to a high-tech world) Does it use other works as documentation,
+background or inspiration (e.g. the writings of Ann Rynd as background
+reference to Bioshock)?</p></li>
+</ul>
+</div>
+<div id="game-overview" class="section level2">
+<h2><span class="header-section-number">4.4</span> Game Overview</h2>
+<p>It is always good to explain briefly what you do in the game to someone who has
+not played it or is not familiar with it. Do not always take your audience’s
+knowledge for granted, explain the game to them, so that they are aware of how
+you understand it. Give your reader an idea of what gameplay is like.</p>
+<ul>
+<li>No. of Players (single player/multi-player/MMO)</li>
+</ul>
+<p>Can you choose the number of players? Does it have different modes depending
+on the number of players? If there is more than one player, do they play
+simultaneously or do they take turns?</p>
+<ul>
+<li>Rules and goals of the game</li>
+</ul>
+<p>Make a summary of the basic rules of the game, a summarized version of the
+instructions, as it were. If the game has an end / a win state, what is it? If it does
+not, it’s also worth explaining whether it is an endless game, or whether there are
+multiple goals, or whether the player is able to set their own goals/win state (e.g.</p>
+<p>The Sims). Does the game have different modes, where the rules change slightly?</p>
+<ul>
+<li>Description of Gameplay: what do you do in the game?</li>
+</ul>
+<p>Focus on the core mechanics: what are the most recurring actions in the game?</p>
+<p>You can think of this in terms of verbs: what are the main verbs of the game? For
+example, in Super Mario Bros. the verbs would be run, jump, pick up, slide</p>
+<p>down, stomp. In Tetris, the verbs would be rotate, drop, clear.</p>
+<ul>
+<li>Spaces of the game</li>
+</ul>
+<p>Where does the game take place? How does the player navigate the space? How
+does the game encourage exploration of the space, if at all? Are there different
+types of spaces, corresponding to different levels? Does the space or navigation
+do anything that is not possible in the real world? How does the space of the
+game relate to the space of the player?</p>
+<ul>
+<li>Aesthetics: general gameplay experience</li>
+</ul>
+<p>This section is a tricky one, since your experience will probably be different from
+other people’s. Your skills or game knowledge affect the way you play the game.</p>
+<p>You can contrast your own gameplay with that of other players by reading
+walkthroughs or reviews. You can also compare how you played with the
+experience intended by the developers, if you find interviews or postmortems
+where they express that intention. Do not try to generalize your opinion–your</p>
+<p>experience is valid as long as it is qualified. Do not guess what the intentions of
+the game makers are from what you see in the game, you should have factual
+evidence, so use concrete examples.</p>
+<ul>
+<li>Rules and Fiction</li>
+</ul>
+<p>How is the setting presented outside and in the game? How does the game live up
+to it? How does it establish the fictional world of the game? How does it relate to
+the rules and goals of the game? If the game has a strong story component, you
+may summarize its premise; however, you should avoid turning your analysis
+into a retelling of the story of the game.</p>
+</div>
+<div id="formal-elements" class="section level2">
+<h2><span class="header-section-number">4.5</span> Formal Elements</h2>
+<p>In this section, you have to identify the different game elements that make up the
+game system, and establish the relationships between them.</p>
+<ul>
+<li><p><strong>Gameworld rules</strong>
+What model is the game trying to simulate? How does the gameworld work,
+outside of the rules of the game? For instance, San Andreas in Grand Theft Auto:
+San Andreas is a city where pedestrians walk on the side walk, cars run at
+normal speed on the road and follow traffic rules, and the day/night cycle
+changes every 20 minutes. This could be called a simulation of the real world,
+within certain limits. Other examples can refer to the difference between what is
+possible in the gameworld and what the player is allowed to do. For example, in
+the main mode of Halo characters talk to each other in cut-scenes, but the player
+cannot choose when to talk or what to say. What is possible or impossible in a
+game is the direct result of decisions made in the design of the game, and you
+have to be aware of those choices.</p></li>
+<li><p><strong>Simulation and Levels of Abstraction</strong>
+What level of abstraction is the game using? How nuanced is the simulation in
+the game? For example, Diner Dash simulates the strategic aspects of
+waitressing, where the key is to optimize your path to do the most things the least
+amount of time, but does not include taking down people’s orders and
+memorized who ordered what. How complex is the simulation, depending on that
+level of abstraction.</p></li>
+<li><p><strong>Game mechanics and resulting dynamics</strong>
+From the rules of the game described above, What are the main strategies? What
+is their range (i.e. are there just a couple of strategies or is there a wide variety)?
+Are there any emergent strategies that are possible but may not have been
+predicted by the developers? Does the game accommodate different play styles?
+Can the player save the game? If so, can the game be saved at any point, or does
+the game regulate when to save the game?</p></li>
+<li><p><strong>The gap between the game and the player: Player character, mediation, interface design</strong>
+How does the player have agency in the gameworld? How is the information
+displayed on the screen? Is the interaction menu-based (as in Sim City)? Is there
+a player character who represents the player in the world? Is it a given character
+or is it customizable? Can the player character die or not? Does the player
+manipulate the objects directly, without a player character or avatar (e.g. in
+puzzle games like Bejeweled)? Can the player select different entities in the world
+at a time (as in real-time strategy games)? How is gameplay information
+conveyed through the visuals / audio?</p></li>
+<li><p>Difficulty levels and game balancing.
+Are there different difficulty levels? How is the level of difficulty increased? Is it
+well-balanced, i.e. the game becomes difficult at reasonable increases? What
+proficiency does the game expect from the player? Is it easy to pick up, difficult to
+master? How does the game teach you how to play it, if at all? Is there a tutorial,
+or does the game introduce one new element on each level?</p></li>
+<li><p>Control schemes; control peripherals
+Does the player have to type the commands of the game? Does it use the mouse/a
+game controller/a special peripheral? Does the game allow different ways to
+configure your controls? Does the game allow voice input (e.g. voice chat in an
+MMO, or voice controls)? How do the controls affect and shape gameplay?</p></li>
+<li><p>Audiovisuals: visual design, sound design, music
+What is the audiovisual style of the game? Does it evoke / imitate the style of
+other media (e.g. painting, photography, cinema, classical music)? Does it use
+other games as aesthetic reference (e.g. retro games)? What is the color scheme?
+How do these audiovisual elements contribute to the fiction of the game? How do
+they contribute to the mood of the game?</p></li>
+<li><p>Progression vs Emergence
+Does the game force the player to follow a specific sequence? How does the game
+guide the player to the correct action? Are there multiple paths? Are there
+emergent behaviors, or is there room for emergent gameplay? How does the
+game encourage players to experiment with it?</p></li>
+<li><p>Mods / Modes / Cheats / Hacks
+You may be interested in surveying different gameplay modes, that may not be
+the standard for most players, such as user-developed levels, or different modes
+of the game (such as the no-fail mode of Rock Band 2, or the crash mode of
+Burnout, or the multiplayer modes of Diablo 2). Cheats and game hacks have a
+great potential as texts to analyze, since they can become commentaries on the
+original game and reveal hidden or non-obvious aspects of the game.</p></li>
+</ul>
+</div>
+<div id="round-up-your-discussion" class="section level2">
+<h2><span class="header-section-number">4.6</span> Round up your discussion</h2>
+<p>Remember to finish off the paper with a conclusion. Reiterate the main points of
+your paper, what you want your reader to remember, the core of your paper in
+brief. This is an opportunity to ratify your thesis statement, re-stating it and
+summarizing how your evidence supports it. A conclusion can also address one of
+the following points, based on your discussion.
+- Why is this game relevant to the study of games?
+- What is innovative about game? Can it be applied to other games?
+- Open up to further questions that need addressing, in videogame theory, game
+design, more game analysis, etc.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="flappy-bird.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="additional-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-Analysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

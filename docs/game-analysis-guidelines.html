@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Game Analysis Guidelines | ARC451 Game Design</title>
+  <meta name="description" content="ARC Lecture Notes" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Game Analysis Guidelines | ARC451 Game Design" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="ARC Lecture Notes" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Game Analysis Guidelines | ARC451 Game Design" />
+  
+  <meta name="twitter:description" content="ARC Lecture Notes" />
+  
+
+<meta name="author" content="Özgün Balaban" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="flappy-bird.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ARC451 Game Design</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#description"><i class="fa fa-check"></i><b>1.1</b> Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#evaluation"><i class="fa fa-check"></i><b>1.2</b> Evaluation</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#in-class-assignments-homework"><i class="fa fa-check"></i><b>1.2.1</b> In-class assignments – Homework:</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#critical-analysis-of-a-game"><i class="fa fa-check"></i><b>1.2.2</b> Critical analysis of a game:</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#final-project"><i class="fa fa-check"></i><b>1.2.3</b> Final project:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="pong.html"><a href="pong.html"><i class="fa fa-check"></i><b>2</b> PONG</a><ul>
+<li class="chapter" data-level="2.1" data-path="pong.html"><a href="pong.html#getting-started"><i class="fa fa-check"></i><b>2.1</b> Getting Started</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="pong.html"><a href="pong.html#section"><i class="fa fa-check"></i><b>2.1.1</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="pong.html"><a href="pong.html#drawing-shapes-to-the-screen"><i class="fa fa-check"></i><b>2.2</b> Drawing Shapes to the Screen</a></li>
+<li class="chapter" data-level="2.3" data-path="pong.html"><a href="pong.html#user-input"><i class="fa fa-check"></i><b>2.3</b> User Input</a></li>
+<li class="chapter" data-level="2.4" data-path="pong.html"><a href="pong.html#player-bounds"><i class="fa fa-check"></i><b>2.4</b> Player Bounds</a></li>
+<li class="chapter" data-level="2.5" data-path="pong.html"><a href="pong.html#ball-movement"><i class="fa fa-check"></i><b>2.5</b> Ball Movement</a></li>
+<li class="chapter" data-level="2.6" data-path="pong.html"><a href="pong.html#bouncing-from-the-sides"><i class="fa fa-check"></i><b>2.6</b> Bouncing from the sides</a></li>
+<li class="chapter" data-level="2.7" data-path="pong.html"><a href="pong.html#collider-for-ball-and-paddles"><i class="fa fa-check"></i><b>2.7</b> Collider for Ball and Paddles</a></li>
+<li class="chapter" data-level="2.8" data-path="pong.html"><a href="pong.html#score"><i class="fa fa-check"></i><b>2.8</b> Score</a></li>
+<li class="chapter" data-level="2.9" data-path="pong.html"><a href="pong.html#score-update-and-ui"><i class="fa fa-check"></i><b>2.9</b> Score update and UI</a></li>
+<li class="chapter" data-level="2.10" data-path="pong.html"><a href="pong.html#sound"><i class="fa fa-check"></i><b>2.10</b> Sound</a></li>
+<li class="chapter" data-level="2.11" data-path="pong.html"><a href="pong.html#assignment"><i class="fa fa-check"></i><b>2.11</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="flappy-bird.html"><a href="flappy-bird.html"><i class="fa fa-check"></i><b>3</b> Flappy Bird</a><ul>
+<li class="chapter" data-level="3.1" data-path="flappy-bird.html"><a href="flappy-bird.html#initial-setup"><i class="fa fa-check"></i><b>3.1</b> Initial Setup</a></li>
+<li class="chapter" data-level="3.2" data-path="flappy-bird.html"><a href="flappy-bird.html#assignment-1"><i class="fa fa-check"></i><b>3.2</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="game-analysis-guidelines.html"><a href="game-analysis-guidelines.html"><i class="fa fa-check"></i><b>4</b> Game Analysis Guidelines</a><ul>
+<li class="chapter" data-level="4.1" data-path="game-analysis-guidelines.html"><a href="game-analysis-guidelines.html#before-you-start-writing-play-the-game"><i class="fa fa-check"></i><b>4.1</b> Before you start writing: play the game</a></li>
+<li class="chapter" data-level="4.2" data-path="game-analysis-guidelines.html"><a href="game-analysis-guidelines.html#types-of-analysis"><i class="fa fa-check"></i><b>4.2</b> Types of Analysis</a></li>
+<li class="chapter" data-level="4.3" data-path="game-analysis-guidelines.html"><a href="game-analysis-guidelines.html#contextualize"><i class="fa fa-check"></i><b>4.3</b> Contextualize</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ARC451 Game Design</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="game-analysis-guidelines" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Game Analysis Guidelines</h1>
+<p>This is a list of general guidelines to analyze a videogame or a specific segment of
+it. It can also be helpful to compare different games. This is not a template, but
+rather a list of aspects that can be part of your analysis. Every section relates to all
+the others; they are listed in an order that would facilitate building up the
+argument, but can be rearranged depending on the goal of your analysis. Which
+sections you should expand on depends on the focus of your discussion. Whether
+you’re analyzing a whole game and its context, or your experience of playing the
+game, or one specific game mechanic, are all factors that will shape your analysis.</p>
+<p>A game analysis should be a critique, rather than a review. A critique breaks
+down the object of study, using theoretical concepts systematically to structure
+and support it. Critiques are based on argumentation and supported by evidence.
+Reviews evaluate the quality of the game reviewed, and even though they also
+have to be supported by argumentation, they also tend to be more subjective. The
+goal of a game analysis is not to establish how good or bad a game is, but
+highlight and rationalize the aspects that make the game worth studying and
+contribute to understanding videogames better. Thus, you will be expected to
+write a critique, which is very different from a review for a blog.</p>
+<div id="before-you-start-writing-play-the-game" class="section level2">
+<h2><span class="header-section-number">4.1</span> Before you start writing: play the game</h2>
+<ul>
+<li>Play the game extensively</li>
+</ul>
+<p>Try to complete the game, or at least familiarize yourself with all the modes. You
+should master the game as much as you can. If you’ve played it before, play it
+again, to have the game fresh in your mind—replay always helps achieving new
+insights about the game. The time you should be playing the game varies from
+game to game. In your analysis, be explicit about how you played the game, if
+there are different options (e.g. level of difficulty, character that you used.)</p>
+<ul>
+<li>Take notes while you play.</li>
+</ul>
+<p>It’s good to keep track of things you come across in the game. What do you like?</p>
+<p>What don’t you like? Is there something that you did not expect? Does a specific
+part of the game remind you of something else (another game, or a movie, or
+some other event)? Taking notes of potential examples for your paper is also a
+good habit. If you can have a corresponding savegame for reference, even better.</p>
+<ul>
+<li>Use walkthroughs wisely.</li>
+</ul>
+<p>Anyone can get stuck and might need help, especially if it prevents them from
+getting far enough in the game (and therefore from playing it extensively). Cheat
+codes, watching walkthrough videos, or having a friend play for you are ways to
+help you know more about the game, but they should not be the predominant
+mode in which you experience it. If you just follow a walkthrough from the start,</p>
+<p>you will be reproducing someone else’s experience of the game, not your own. It
+would be like reading Cliff’s Notes instead of the actual book; in the end your
+paper will show that your knowledge of the game is shallow.
+Using a walkthrough can also circumvent some of the problems the game may
+have, since people who write walkthroughs often instruct players how to avoid
+bugs and broken design. You should also have first-hand experience of the
+problems that come across while playing the game. Use walkthroughs as a way to
+learn more about the game, but do not let the walkthrough dictate your
+experience. If you use walkthroughs or cheats, be explicit about it, and note how
+that may have changed your experience and knowledge of the game.</p>
+<ul>
+<li>Read what other people have written about the game
+In order to know more about your game, read about it: reviews, academic articles,
+press releases, newspaper articles, developer diaries, postmortems, etc. It will
+help you get an idea of what other people think about the game, its production
+history, and know more about the context of the game. The game box and
+manuals can also be sources of relevant information; if your copy of the game
+does not have its original box, some websites have repositories of them.</li>
+</ul>
+</div>
+<div id="types-of-analysis" class="section level2">
+<h2><span class="header-section-number">4.2</span> Types of Analysis</h2>
+<p>Once you’ve played the game, you should decide what you want to focus on.
+What makes this game worth analyzing?
+What are you going to discuss?</p>
+<p>The analysis is an essay, so the main argument of your analysis should be
+expressed as a thesis statement. For example: “The morality system in this game
+is usually hailed as unique and complex; however, I will prove that, in closer
+examination, it is merely a binary system, and does not allow for complex moral
+choices.” Another example: “Although Ernest Adams argues that the design of
+Metal Gear Solid 2 is faulty because it breaks the”fourth wall“, my argument is
+that it does not break the immersion in the game because it actually extends the
+space of the game into the player’s space.”</p>
+<p>You probably cannot write something very long, so choose early on what aspects
+of the game you want to highlight. Rather than covering a lot of aspects, select
+one or two important ones, and analyze them in depth, using other sections of the
+analysis as support for your main point. Are you going to talk about the whole
+game, or just a few sections? Are you going to base it on your own experience or
+other people’s? Are you going to discuss other people’s takes on the game? Are
+you going to discuss how the game exemplifies a particular cultural stance or
+trend?
+A brief summary of what the discussion is about should constitute the thesis
+statement of your analysis, and it should appear in the introduction to your game.
+Be clear and concise about what you will be analyzing and how.
+Throughout the paper, you must apply the readings covered in class. The theory
+will provide you with conceptual tools to analyze the game, by applying them, or
+by proving that the game you are dealing with is an exception to them, or by
+finding an area that the theory does not account for that is exemplified in your
+game. Try to start with the theory and how it is relevant to the game, rather than
+writing an argument and then pasting in the relevant vocabulary or references.
+Different types of textual analysis will elaborate more on certain sections. Some
+analyses can expand and compare more than one aspect; however, beware of
+wanting to cover too much and losing focus. The following are just a few
+examples of different types of textual analysis depending on their focus, but you
+can come up with your own depending on what you want to highlight from the
+game. Browse the analyses in the different issues of Game Studies
+<a href="http://gamestudies.org/" class="uri">http://gamestudies.org/</a> to find a range of different academic analyses of games.1
+- Comparative Analysis:</p>
+<p>A game can be compared to other media, which entails elaborating on that
+section of the analysis. This means it is a double analysis, of both the game and
+the other media it is being compared to. This approach makes it necessary to
+define very well what the terms of the comparison are, so you can build a strong
+argument.</p>
+<p>Two games can be compared to each other, which will require expanding on the
+specific aspects being compared (e.g. aesthetics or different elements in the
+formal analysis). Talking about two games in the same paper does not constitute
+a comparative analysis: you must select the aspects that allow the comparison.</p>
+<p>For example, comparing World of Warcraft with Passage is a big leap, since they
+seem to have so little in common. Choose a set of aspects that allows the
+comparison, either by highlighting the contrast, or by drawing similarities where
+there may appear to be none.</p>
+<p>For instance, A comparative analysis can deal with how different games
+implement a similar fictional universe or premise (Cooking Mama vs Diner
+Dash; Star Wars: Knights of the Old Republic vs Star Wars: Shadows of the
+Empire). It is important to be selective about the number of aspects being
+compared, since it is very easy to make it into a double analysis instead of a
+comparison.</p>
+<ul>
+<li>Reading / Interpretation</li>
+</ul>
+<p>This type of analysis understands what happens in the game as a representation
+of something else, e.g. Tetris as a metaphor for American consumerism, as Janet
+Murray argued. It can also be a symbolic reading encouraged by the game itself,</p>
+<p>such as a psychological reading of Silent Hill 2 (see Rusch in Well Played 1.0).</p>
+<p>Interpretations usually draw heavily on pre-existing interpretive theories and
+analytical methods, from Freudian / Jungian approaches to deconstruction.</p>
+<p>Interpretations are subjective, so the key to provide a convincing reading is to
+ground it on evidence, and follow a systematic approach based on pre-existing
+methods. You can also analyze the game from the standpoint of the theories and
+methods of a field, from education to sociology or film studies. Game studies is an
+interdisciplinary field, as you will see through the course. That does not mean
+that other disciplines cannot analyze games and see how they relate to their
+knowledge domain.</p>
+<ul>
+<li>Historical analysis:</li>
+</ul>
+<p>A historical analysis can deal, for example, with the production history of a game,</p>
+<p>its reception, or how it marked a specific milestone in videogame history.</p>
+<p>Historical analyses expand on the socio-historical context of the game, although depending on what historical aspect is highlighted, other sections may also have
+to be strengthened. The historical innovations of a game, for example, will
+probably require expanding on its formal qualities. For example, Drew Davison,
+in his analysis in Well Played 1.0 accounts for his experience as a player of World
+of Goo throughout his development. Given that he was part of the process, he can
+provide a unique perspective in his analysis.
+- Case study
+The “case study” format can be used as a way to prove or disprove a set of
+theoretical assumptions, by applying them in depth to a particular game. The
+game becomes the reference example of a specific theory or approach. For
+instance, the analysis of Ultima Underworld in Well Played 1.0 explores specific
+methods to integrate gameplay and storytelling. Metal Gear Solid 2 could be
+approached as a case study of using self-reference and breaking the “fourth wall”
+as a way of making a commentary on the player’s behaviour.
+These are just a few examples of what you may do. For the purposes of this class,
+try to marry the game to the theory, and try to get an idea of what you want to say
+early on.</p>
+</div>
+<div id="contextualize" class="section level2">
+<h2><span class="header-section-number">4.3</span> Contextualize</h2>
+<p>Providing a frame of reference to understand your analysis is basic to make it
+accessible to your reader, particularly if they are not familiar with the game.
+Games, like any other media artifacts, are not produced in a void. They are the
+product of their times: the technology available at the moment, the people who
+made them, or other socio-cultural trends that marked that historical moment.
+Unless your analysis focuses specifically on any of these areas (e.g. a historical
+analysis or a comparison with other media), this should be a brief section. Your
+contextualization should include at least three of these aspects.
+- Game Developer/Studio; Artists, Designers, Programmers, Writers (or whoever
+is relevant).
+The creative team of a game is important, particularly in the case where it
+connects to other relevant games they worked on before or after this game. Some
+development studios or designers have certain trademarks, or specialize on a
+particular genre (e.g. Valve, Square Enix or Will Wright), so choosing one of their
+games can mark a specific time in the evolution of their games, which might be
+important to the context of your analysis.
+- Game genre and related games
+A game genre usually has a set of established conventions behind it, such as First
+Person Shooters, adventure games, real-time strategy games or Role-Playing
+Games. Establishing the game within a genre can help determine, for instance,
+why it is like other games of the same type, or what is innovative about it. If the
+game partakes of conventions from different genres, that can also be a way of
+explaining what sets it apart from other games. The relations to other game
+genres do not have to be exclusively digital–board and card games, as well as
+other traditional games, can be the origins of certain mechanics.
+The game of your choice can relate to other games by any of the elements listed
+on these guidelines: developer, genre, publisher, by being released at the same
+time, similar mechanics, similar themes (e.g. space flight simulators), being part
+of a franchise (e.g. Star Wars or Mario), using similar controls, games that it has
+influenced or that later tried to copy it, etc.
+- Technological context
+What platform(s) was the game developed for? It is important to note which
+version of the game you are playing, e.g. Assassin’s Creed for the DS is a different
+game from the PS3 version. The technology will determine, for instance, the
+length of the game or whether there is an ending (think of arcade games in the
+early 80s, where games typically did not end). In other cases, such as the Virtual
+Boy or the Wii, the technology can also shape the way the way the game is played.
+- Socio-historical context
+When was the game made? It’s different to analyze a game from the 70s, when
+videogames were almost exclusively played in arcades, than a recent game, now
+that videogames start to enjoy a more general acceptance in cultural terms.
+Where was it released? A game released in the US in the mid 80s (after the socalled videogame crash) may not have had the same influence as a game released
+in Europe (where videogames were played almost exclusively in home
+computers).
+- Audience
+Who is the game intended for? Games can create communities around them, at
+times fostered by the developers themselves. The fans of a particular game can be
+a phenomenon worth studying in itself, for example, as creators of content for it,
+as critics/reviewers, or as assistants to other players by providing walkthroughs
+or strategy guides. Studying the game community in depth can veer away from
+the textual analysis provided here, so be aware that if you study the community
+you may not be analyzing the game itself. It is a perfectly valid analysis, but
+different from the one proposed here.
+- Relations to other media
+Is the game part of a franchise, a tie-in with a work in another medium (e.g. Lost
+- Via Domus, Wall-E)? Is it an adaptation of the work in another medium, or is it
+only using the same characters and settings? Is it inspired by a situation or
+premise of another medium (e.g. Dead Rising taking the zombies-in-a-mall
+premise of Dawn of the Dead)? Does it incorporate and re-work pre-existing
+stories (e.g. Too Human using Norse mythology as the basis for its story, but
+transposing it to a high-tech world) Does it use other works as documentation,
+background or inspiration (e.g. the writings of Ann Rynd as background
+reference to Bioshock)?
+- If you are analyzing a game segment, how does the segment relate to the rest of
+the game? What happened before and after? Are the mechanics different in this
+part of the game? Does this section need a different strategy from the rest of the</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="flappy-bird.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-Analysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

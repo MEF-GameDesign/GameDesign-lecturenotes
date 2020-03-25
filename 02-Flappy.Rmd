@@ -1,0 +1,24 @@
+#  Flappy Bird
+
+
+
+Flappy Bird is a mobile game developed by Vietnamese video game artist and programmer Dong Nguyen, under his game development company dotGears. The game is a side-scroller where the player controls a bird, attempting to fly between columns of green pipes without hitting them.
+
+![Flappy Bird](Images/flappy.gif)
+
+In this course we are going to build Flappy Bird in UNITY.
+
+## Initial Setup
+
+Setting up the aspect ratio
+
+---
+%## Assignment
+
+%%Now I want you to improve 5 aspects of the game. Some ideas:
+
+- Change background color, add texture etc.
+- Change colors/textures etc. of paddles
+- Change some mechanics, the ball gets faster each time etc.
+- Add AI to control the paddle – bonus points, hard option
+---

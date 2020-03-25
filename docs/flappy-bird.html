@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>ARC451 Game Design</title>
+  <title>Chapter 3 Flappy Bird | ARC451 Game Design</title>
   <meta name="description" content="ARC Lecture Notes" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="ARC451 Game Design" />
+  <meta property="og:title" content="Chapter 3 Flappy Bird | ARC451 Game Design" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ARC451 Game Design" />
+  <meta name="twitter:title" content="Chapter 3 Flappy Bird | ARC451 Game Design" />
   
   <meta name="twitter:description" content="ARC Lecture Notes" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="pong.html"/>
+<link rel="prev" href="pong.html"/>
+<link rel="next" href="critical-game-analysis.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -93,7 +93,6 @@
 </ul></li>
 <li class="chapter" data-level="3" data-path="flappy-bird.html"><a href="flappy-bird.html"><i class="fa fa-check"></i><b>3</b> Flappy Bird</a><ul>
 <li class="chapter" data-level="3.1" data-path="flappy-bird.html"><a href="flappy-bird.html#initial-setup"><i class="fa fa-check"></i><b>3.1</b> Initial Setup</a></li>
-<li class="chapter" data-level="3.2" data-path="flappy-bird.html"><a href="flappy-bird.html#assignment-1"><i class="fa fa-check"></i><b>3.2</b> Assignment</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html"><i class="fa fa-check"></i><b>4</b> Critical Game Analysis</a><ul>
 <li class="chapter" data-level="4.1" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#first-step-is-selecting-a-game."><i class="fa fa-check"></i><b>4.1</b> First step is selecting a game.</a></li>
@@ -124,32 +123,18 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">ARC451 Game Design</h1>
-<p class="author"><em>Özgün Balaban</em></p>
+<div id="flappy-bird" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Flappy Bird</h1>
+<p>Flappy Bird is a mobile game developed by Vietnamese video game artist and programmer Dong Nguyen, under his game development company dotGears. The game is a side-scroller where the player controls a bird, attempting to fly between columns of green pipes without hitting them.</p>
+<div class="figure">
+<img src="Images/flappy.gif" alt="Flappy Bird" />
+<p class="caption">Flappy Bird</p>
 </div>
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Syllabus</h1>
-<div id="description" class="section level2">
-<h2><span class="header-section-number">1.1</span> Description</h2>
-<p>This course is an introductory course on understanding what a game is, mechanics of games and game design process. This course aims to present workflows of game devel-opment through discussions of history of games, practical implementations of simple games and a project that includes all aspects game design.</p>
-<p>Throughout the course, each week is divided roughly to three sessions. In the first part, theory of game design will be discussed. In these sessions important games from history will be shown and they will be analyzed critically. Moreover, certain concepts related games will be discussed. In the second sessions, practical knowledge will be presented to the students. Here there will be an introduction to programming, introductions to tools that will be used such as Unity game engine. The second sessions will be followed by in class activity sessions which will include small assignments or project related group work time.</p>
-</div>
-<div id="evaluation" class="section level2">
-<h2><span class="header-section-number">1.2</span> Evaluation</h2>
-<div id="in-class-assignments-homework" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> In-class assignments – Homework:</h3>
-<p>In the practical sessions in class, there will be an implementation of a small game. These examples will be half-finished at the end of the practical sessions. Students are expected to finish these examples. Assistance will be provided.</p>
-</div>
-<div id="critical-analysis-of-a-game" class="section level3">
-<h3><span class="header-section-number">1.2.2</span> Critical analysis of a game:</h3>
-<p>Each student is expected to choose a game and analyze the underlying rule-structures of the game and then visually communicate them to the class.</p>
-</div>
-<div id="final-project" class="section level3">
-<h3><span class="header-section-number">1.2.3</span> Final project:</h3>
-<p>For final project, students will form groups three and will create a game and present it. Development of the game will take place throughout the term and students will follow a workflow that is discussed during the lectures. The projects will be evaluated according to its creativity, programming value, and mechanics.</p>
+<p>In this course we are going to build Flappy Bird in UNITY.</p>
+<div id="initial-setup" class="section level2">
+<h2><span class="header-section-number">3.1</span> Initial Setup</h2>
+<p>Setting up the aspect ratio</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -157,8 +142,8 @@
           </div>
         </div>
       </div>
-
-<a href="pong.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pong.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="critical-game-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -189,7 +174,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-Flappy.Rmd",
 "text": "Edit"
 },
 "history": {
