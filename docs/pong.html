@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 PONG | ARC Game Design</title>
+  <title>Chapter 2 PONG | ARC451 Game Design</title>
   <meta name="description" content="ARC Lecture Notes" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 PONG | ARC Game Design" />
+  <meta property="og:title" content="Chapter 2 PONG | ARC451 Game Design" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 PONG | ARC Game Design" />
+  <meta name="twitter:title" content="Chapter 2 PONG | ARC451 Game Design" />
   
   <meta name="twitter:description" content="ARC Lecture Notes" />
   
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="index.html"/>
-
+<link rel="next" href="flappy-bird.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -127,10 +127,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">MBL617 Theory and Methods in Digital Heritage</a></li>
+<li><a href="./">ARC451 Game Design</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Lecture Note</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#description"><i class="fa fa-check"></i><b>1.1</b> Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#evaluation"><i class="fa fa-check"></i><b>1.2</b> Evaluation</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#in-class-assignments-homework"><i class="fa fa-check"></i><b>1.2.1</b> In-class assignments – Homework:</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#critical-analysis-of-a-game"><i class="fa fa-check"></i><b>1.2.2</b> Critical analysis of a game:</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#final-project"><i class="fa fa-check"></i><b>1.2.3</b> Final project:</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="pong.html"><a href="pong.html"><i class="fa fa-check"></i><b>2</b> PONG</a><ul>
 <li class="chapter" data-level="2.1" data-path="pong.html"><a href="pong.html#getting-started"><i class="fa fa-check"></i><b>2.1</b> Getting Started</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="pong.html"><a href="pong.html#section"><i class="fa fa-check"></i><b>2.1.1</b> </a></li>
@@ -146,6 +153,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="pong.html"><a href="pong.html#sound"><i class="fa fa-check"></i><b>2.10</b> Sound</a></li>
 <li class="chapter" data-level="2.11" data-path="pong.html"><a href="pong.html#assignment"><i class="fa fa-check"></i><b>2.11</b> Assignment</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="flappy-bird.html"><a href="flappy-bird.html"><i class="fa fa-check"></i><b>3</b> Flappy Bird</a><ul>
+<li class="chapter" data-level="3.1" data-path="flappy-bird.html"><a href="flappy-bird.html#initial-setup"><i class="fa fa-check"></i><b>3.1</b> Initial Setup</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html"><i class="fa fa-check"></i><b>4</b> Critical Game Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#first-step-is-selecting-a-game."><i class="fa fa-check"></i><b>4.1</b> First step is selecting a game.</a></li>
+<li class="chapter" data-level="4.2" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#before-you-start-analysing-play-the-game"><i class="fa fa-check"></i><b>4.2</b> Before you start analysing: play the game</a></li>
+<li class="chapter" data-level="4.3" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#contextualize"><i class="fa fa-check"></i><b>4.3</b> Contextualize</a></li>
+<li class="chapter" data-level="4.4" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#game-overview"><i class="fa fa-check"></i><b>4.4</b> Game Overview</a></li>
+<li class="chapter" data-level="4.5" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#formal-elements"><i class="fa fa-check"></i><b>4.5</b> Formal Elements</a></li>
+<li class="chapter" data-level="4.6" data-path="critical-game-analysis.html"><a href="critical-game-analysis.html#round-up-your-discussion"><i class="fa fa-check"></i><b>4.6</b> Round up your discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="create-with-code.html"><a href="create-with-code.html"><i class="fa fa-check"></i><b>5</b> Create With Code</a><ul>
+<li class="chapter" data-level="5.1" data-path="create-with-code.html"><a href="create-with-code.html#unit-1---player-control"><i class="fa fa-check"></i><b>5.1</b> Unit 1 - Player Control</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="create-with-code.html"><a href="create-with-code.html#lesson-1.1---start-your-3d-engines"><i class="fa fa-check"></i><b>5.1.1</b> Lesson 1.1 - Start your 3D Engines</a></li>
+<li class="chapter" data-level="5.1.2" data-path="create-with-code.html"><a href="create-with-code.html#lesson-1.2---pedal-to-the-metal"><i class="fa fa-check"></i><b>5.1.2</b> Lesson 1.2 - Pedal to the Metal</a></li>
+<li class="chapter" data-level="5.1.3" data-path="create-with-code.html"><a href="create-with-code.html#lesson-1.3---high-speed-chase"><i class="fa fa-check"></i><b>5.1.3</b> Lesson 1.3 - High Speed Chase</a></li>
+<li class="chapter" data-level="5.1.4" data-path="create-with-code.html"><a href="create-with-code.html#lesson-1.4---step-into-the-drivers-seat"><i class="fa fa-check"></i><b>5.1.4</b> Lesson 1.4 - Step into the Driver’s Seat</a></li>
+<li class="chapter" data-level="5.1.5" data-path="create-with-code.html"><a href="create-with-code.html#challenge-1---plane-programming"><i class="fa fa-check"></i><b>5.1.5</b> Challenge 1 - Plane Programming</a></li>
+<li class="chapter" data-level="5.1.6" data-path="create-with-code.html"><a href="create-with-code.html#lab-1---project-design-document"><i class="fa fa-check"></i><b>5.1.6</b> Lab 1 - Project Design Document</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -158,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ARC Game Design</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ARC451 Game Design</a>
           </h1>
         </div>
 
@@ -305,21 +333,21 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 <li>player1: refers GameObject of Player1</li>
 <li>player2: refers GameObject of Player1</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">[SerializeField] <span class="kw">private</span> <span class="dt">float</span> _speed = 4f;</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">[SerializeField] GameObject player1;</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">[SerializeField] GameObject player2;</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" title="1">[SerializeField] <span class="kw">private</span> <span class="dt">float</span> _speed = 4f;</a>
+<a class="sourceLine" id="cb1-2" title="2">[SerializeField] GameObject player1;</a>
+<a class="sourceLine" id="cb1-3" title="3">[SerializeField] GameObject player2;</a></code></pre></div>
 <p>SerializeField in Unity means any variable that we have created will be accessible in the Unity interface. For more info: <a href="https://docs.unity3d.com/ScriptReference/SerializeField.html" class="uri">https://docs.unity3d.com/ScriptReference/SerializeField.html</a></p>
 <p>After setting up our variable we can create Update() method.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">// player1 - left player - movements</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="dt">float</span> verticalInput1 = Input.<span class="fu">GetAxis</span>(<span class="st">&quot;Player1&quot;</span>);</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">Vector3 direction1 = <span class="kw">new</span> <span class="fu">Vector3</span>(<span class="dv">0</span>, verticalInput1, <span class="dv">0</span>);</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">player1.<span class="fu">transform</span>.<span class="fu">Translate</span>(Time.<span class="fu">deltaTime</span> * _speed * direction1);</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" title="1"><span class="co">// player1 - left player - movements</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="dt">float</span> verticalInput1 = Input.<span class="fu">GetAxis</span>(<span class="st">&quot;Player1&quot;</span>);</a>
+<a class="sourceLine" id="cb2-3" title="3">Vector3 direction1 = <span class="kw">new</span> <span class="fu">Vector3</span>(<span class="dv">0</span>, verticalInput1, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb2-4" title="4">player1.<span class="fu">transform</span>.<span class="fu">Translate</span>(Time.<span class="fu">deltaTime</span> * _speed * direction1);</a></code></pre></div>
 <p>Here verticalInput1 receives the movement from the Player1 axes that we have created. According to the values we get, we create a direction1 vector3 which only receives values for Y axis since our player1 only moves up and down. And finally we move player1 every second.</p>
 <p>We repeat the same code for player2:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">// Player 2 - right player - movements </span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="dt">float</span> verticalInput2 = Input.<span class="fu">GetAxis</span>(<span class="st">&quot;Player2&quot;</span>);</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">Vector3 direction2 = <span class="kw">new</span> <span class="fu">Vector3</span>(<span class="dv">0</span>, verticalInput2, <span class="dv">0</span>);</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">player2.<span class="fu">transform</span>.<span class="fu">Translate</span>(Time.<span class="fu">deltaTime</span> * _speed * direction2);</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" title="1"><span class="co">// Player 2 - right player - movements </span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="dt">float</span> verticalInput2 = Input.<span class="fu">GetAxis</span>(<span class="st">&quot;Player2&quot;</span>);</a>
+<a class="sourceLine" id="cb3-3" title="3">Vector3 direction2 = <span class="kw">new</span> <span class="fu">Vector3</span>(<span class="dv">0</span>, verticalInput2, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb3-4" title="4">player2.<span class="fu">transform</span>.<span class="fu">Translate</span>(Time.<span class="fu">deltaTime</span> * _speed * direction2);</a></code></pre></div>
 <p>Now we need to associate Paddle script with PaddleS folder we have created. Drag the Paddle script from the <strong>Project Window</strong> to <strong>Hierarchy Window</strong> and drop it over the Paddles folder. Click on the Paddles folder and from the inspector window check if you can see Paddle (Script). Now drag Player1 from the <strong>Hierarchy Window</strong> to Player1 in Inspector and repeat this for Player2.</p>
 <div class="figure">
 <img src="Images/AssociateScript.png" alt="Associate the script with Paddles" />
@@ -335,14 +363,14 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 <h2><span class="header-section-number">2.4</span> Player Bounds</h2>
 <p>In the last section, we set up movements with the keyboard input. However, the paddles can go out of the bounds of the game space. We need to restrict the movement of the paddles to the screen size.</p>
 <p>To achieve this we need to include two <strong>if</strong> statements to check if the paddles are at the top or bottom of the screen.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">if</span> (player1.<span class="fu">transform</span>.<span class="fu">position</span>.<span class="fu">y</span> &lt; <span class="fl">-3.9</span> &amp;&amp; verticalInput1 &lt; <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">  verticalInput1 = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">else</span> <span class="kw">if</span> (player1.<span class="fu">transform</span>.<span class="fu">position</span>.<span class="fu">y</span> &gt; <span class="fl">3.9</span> &amp;&amp; verticalInput1 &gt; <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">{</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">  verticalInput1 = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">if</span> (player1.<span class="fu">transform</span>.<span class="fu">position</span>.<span class="fu">y</span> &lt; <span class="fl">-3.9</span> &amp;&amp; verticalInput1 &lt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2">{</a>
+<a class="sourceLine" id="cb4-3" title="3">  verticalInput1 = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-4" title="4">}</a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="kw">else</span> <span class="kw">if</span> (player1.<span class="fu">transform</span>.<span class="fu">position</span>.<span class="fu">y</span> &gt; <span class="fl">3.9</span> &amp;&amp; verticalInput1 &gt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb4-6" title="6">{</a>
+<a class="sourceLine" id="cb4-7" title="7">  verticalInput1 = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-8" title="8">}</a></code></pre></div>
 <p>Here the first if clause checks if player1’s position is at the top of the screen which is -3.9, if it then the code sets the speed of the paddle to 0 which stops the movement. Similarly there is an another if statement which checks if player1 is at the bottom of the screen and again this also stops the paddle which ensures the paddle stays inside the screen.</p>
 <p>We need to do the same check for player2 which makes the code like below.</p>
 <div class="figure">
@@ -355,10 +383,10 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 <p>Now, we should make the ball move. For this we will create a ball script. Right click the <strong>Project Window</strong> &gt;Create&gt;C# Script and name it as ball.</p>
 <p>To make it tidier in the Project Window, create a folder and name it as Scripts and put Ball and Paddle script inside the Scripts folder.</p>
 <p>We should start the game by hitting a key which will serve the ball. First, we should set the variables:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1">[SerializeField] <span class="kw">private</span> <span class="dt">float</span> _speed = 4f;</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">private</span> <span class="dt">bool</span> serve = <span class="kw">true</span>;  <span class="co">// boolean to indicate serve action</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">private</span> <span class="dt">bool</span> end = <span class="kw">false</span>;  <span class="co">// game ends</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">private</span> Vector3 direction; <span class="co">// direction of the ball</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" title="1">[SerializeField] <span class="kw">private</span> <span class="dt">float</span> _speed = 4f;</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">private</span> <span class="dt">bool</span> serve = <span class="kw">true</span>;  <span class="co">// boolean to indicate serve action</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw">private</span> <span class="dt">bool</span> end = <span class="kw">false</span>;  <span class="co">// game ends</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="kw">private</span> Vector3 direction; <span class="co">// direction of the ball</span></a></code></pre></div>
 <ul>
 <li>_speed: controls the speed of the ball.</li>
 <li>serve: Indicates the serve state</li>
@@ -366,15 +394,15 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 <li>direction: direction of the ball as Vector3</li>
 </ul>
 <p>Next we should create our code, if the state is serve and someone presses Enter the ball should start moving in a random direction.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">if</span> (Input.<span class="fu">GetKeyDown</span>(KeyCode.<span class="fu">Return</span>) &amp;&amp; serve)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">  direction = <span class="kw">new</span> <span class="fu">Vector3</span>(Random.<span class="fu">Range</span>(-<span class="fl">4.0f</span>, 4f), Random.<span class="fu">Range</span>(-<span class="fl">8.0f</span>, 8f), <span class="dv">0</span>);</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">  serve = <span class="kw">false</span>;</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="kw">if</span> (!serve)</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">{</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">  transform.<span class="fu">Translate</span>(Time.<span class="fu">deltaTime</span> * _speed * direction);</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">if</span> (Input.<span class="fu">GetKeyDown</span>(KeyCode.<span class="fu">Return</span>) &amp;&amp; serve)</a>
+<a class="sourceLine" id="cb6-2" title="2">{</a>
+<a class="sourceLine" id="cb6-3" title="3">  direction = <span class="kw">new</span> <span class="fu">Vector3</span>(Random.<span class="fu">Range</span>(-<span class="fl">4.0f</span>, 4f), Random.<span class="fu">Range</span>(-<span class="fl">8.0f</span>, 8f), <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb6-4" title="4">  serve = <span class="kw">false</span>;</a>
+<a class="sourceLine" id="cb6-5" title="5">}</a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="kw">if</span> (!serve)</a>
+<a class="sourceLine" id="cb6-7" title="7">{</a>
+<a class="sourceLine" id="cb6-8" title="8">  transform.<span class="fu">Translate</span>(Time.<span class="fu">deltaTime</span> * _speed * direction);</a>
+<a class="sourceLine" id="cb6-9" title="9">}</a></code></pre></div>
 <p>After creating this script, we should drag the ball script over the ball GameObject. If we start the game, with a press to Return key the ball starts moving. However, since we did not set up the boundary to the ball it goes out of bounds.</p>
 <div class="figure">
 <img src="Images/BallScript.png" alt="Ball Script" />
@@ -385,14 +413,14 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 <div id="bouncing-from-the-sides" class="section level2">
 <h2><span class="header-section-number">2.6</span> Bouncing from the sides</h2>
 <p>For this the y position of the ball should be between -4.8 and 4.8. We will put two if conditionals; if the y position of the ball is bigger than 4.8, ball’s direction should flip in the y direction. Similarly, if the y position of the ball is lesser than -4.8 ball’s direction should flip in the y direction as well.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">if</span> (transform.<span class="fu">position</span>.<span class="fu">y</span> &gt; <span class="fl">4.8</span> &amp;&amp; direction.<span class="fu">y</span> &gt; <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">  direction.<span class="fu">y</span> = -direction.<span class="fu">y</span>;</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">if</span> (transform.<span class="fu">position</span>.<span class="fu">y</span> &lt; <span class="fl">-4.8</span> &amp;&amp; direction.<span class="fu">y</span> &lt; <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">{</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">  direction.<span class="fu">y</span> = -direction.<span class="fu">y</span>;</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">if</span> (transform.<span class="fu">position</span>.<span class="fu">y</span> &gt; <span class="fl">4.8</span> &amp;&amp; direction.<span class="fu">y</span> &gt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2">{</a>
+<a class="sourceLine" id="cb7-3" title="3">  direction.<span class="fu">y</span> = -direction.<span class="fu">y</span>;</a>
+<a class="sourceLine" id="cb7-4" title="4">}</a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="kw">if</span> (transform.<span class="fu">position</span>.<span class="fu">y</span> &lt; <span class="fl">-4.8</span> &amp;&amp; direction.<span class="fu">y</span> &lt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb7-6" title="6">{</a>
+<a class="sourceLine" id="cb7-7" title="7">  direction.<span class="fu">y</span> = -direction.<span class="fu">y</span>;</a>
+<a class="sourceLine" id="cb7-8" title="8">}</a></code></pre></div>
 <p>By adding these clauses will ensure that the ball stays in the boundary of the screen.</p>
 <div class="figure">
 <img src="Images/BallBoundary.png" alt="Keep the ball inside the boundary" />
@@ -422,10 +450,10 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 <p class="caption">Is Trigger</p>
 </div>
 <p>After adding rigidbody2d and boxcollider2d, now we should handle the code. Openning up ball script, we create OnTriggerEnter2D method. This methods calls up when two objects collide.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">OnTriggerEnter2D</span>(Collider2D other)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">  direction.<span class="fu">x</span> = -direction.<span class="fu">x</span>;</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">OnTriggerEnter2D</span>(Collider2D other)</a>
+<a class="sourceLine" id="cb8-2" title="2">{</a>
+<a class="sourceLine" id="cb8-3" title="3">  direction.<span class="fu">x</span> = -direction.<span class="fu">x</span>;</a>
+<a class="sourceLine" id="cb8-4" title="4">}</a></code></pre></div>
 <p>This is a very simple method. It flips the direction of the ball when there is a collision between the ball and the paddle. So the new ball script is:</p>
 <div class="figure">
 <img src="Images/BallScript2.png" alt="Updated Ball Script" />
@@ -436,23 +464,23 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 <h2><span class="header-section-number">2.8</span> Score</h2>
 <p>Next, we should be able to determine if there is a score and reset the game if there is a score, starting the game from the center of the screen with a key press again.</p>
 <p>To keep up the score we create two new variables:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">private</span> <span class="dt">int</span> player1Score = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">private</span> <span class="dt">int</span> player2Score = <span class="dv">0</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">private</span> <span class="dt">int</span> player1Score = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">private</span> <span class="dt">int</span> player2Score = <span class="dv">0</span>;</a></code></pre></div>
 <p>We will include a code to check the position of the ball and if the ball’s position is lesser than -6.7, means the ball has left the screen from the left thus player2 wins a score. If that happens we call the reset method and increase player2 score. If the score is 15 then the game ends, else the ball is returned to the center to be served again,</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">if</span> (transform.<span class="fu">position</span>.<span class="fu">x</span> &lt; <span class="fl">-6.7</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">  player2Score++;</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="fu">Reset</span>();</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">  <span class="kw">if</span> (player2Score == <span class="dv">15</span>)</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">  {</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">    end = <span class="kw">true</span>;</a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">  } <span class="kw">else</span> {serve = <span class="kw">true</span>;}</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">if</span> (transform.<span class="fu">position</span>.<span class="fu">x</span> &lt; <span class="fl">-6.7</span>)</a>
+<a class="sourceLine" id="cb10-2" title="2">{</a>
+<a class="sourceLine" id="cb10-3" title="3">  player2Score++;</a>
+<a class="sourceLine" id="cb10-4" title="4">  <span class="fu">Reset</span>();</a>
+<a class="sourceLine" id="cb10-5" title="5">  <span class="kw">if</span> (player2Score == <span class="dv">15</span>)</a>
+<a class="sourceLine" id="cb10-6" title="6">  {</a>
+<a class="sourceLine" id="cb10-7" title="7">    end = <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb10-8" title="8">  } <span class="kw">else</span> {serve = <span class="kw">true</span>;}</a>
+<a class="sourceLine" id="cb10-9" title="9">}</a></code></pre></div>
 <p>Reset method just centers the ball.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">Reset</span>()</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">  transform.<span class="fu">position</span> = <span class="kw">new</span> <span class="fu">Vector3</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>);</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">Reset</span>()</a>
+<a class="sourceLine" id="cb11-2" title="2">{</a>
+<a class="sourceLine" id="cb11-3" title="3">  transform.<span class="fu">position</span> = <span class="kw">new</span> <span class="fu">Vector3</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb11-4" title="4">}</a></code></pre></div>
 <p>After adding these codes and repeating the process for the right side, we have the scoring component of the game.</p>
 </div>
 <div id="score-update-and-ui" class="section level2">
@@ -470,10 +498,10 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 </div>
 <p>We should do the same for Player2, so right click on it and duplicate. Change its name as Player2ScoreText and PosX as 150.</p>
 <p>After this step, we should associate this text and use it in our ball script. So we should add following variables to the code:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb12-1" data-line-number="1">[SerializeField] <span class="kw">private</span> Text player1ScoreText;</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">[SerializeField] <span class="kw">private</span> Text player2ScoreText;</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb12-1" title="1">[SerializeField] <span class="kw">private</span> Text player1ScoreText;</a>
+<a class="sourceLine" id="cb12-2" title="2">[SerializeField] <span class="kw">private</span> Text player2ScoreText;</a></code></pre></div>
 <p>And these fields should be updated each time there is a score so we add the following code after the Reset function call.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb13-1" data-line-number="1">player2ScoreText.<span class="fu">text</span> =  player2Score.<span class="fu">ToString</span>();</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb13-1" title="1">player2ScoreText.<span class="fu">text</span> =  player2Score.<span class="fu">ToString</span>();</a></code></pre></div>
 <p>After adding these two code snippets we should click on Ball gameobject and drag Player1ScoreText and Player2ScoreText to its places.</p>
 <p>Finally, our game mechanics works, next we will add sound that plays when there is a collision between the ball and the paddles.</p>
 </div>
@@ -481,9 +509,9 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 <h2><span class="header-section-number">2.10</span> Sound</h2>
 <p>For the sound, you should download the sound file from Github. Place the paddle_hit file inside the assets folder. Drag the file into the <strong>Hierarchy window</strong>.</p>
 <p>Add a variable in ball script.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb14-1" data-line-number="1">[SerializeField] <span class="kw">private</span> AudioSource _paddleHit;</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb14-1" title="1">[SerializeField] <span class="kw">private</span> AudioSource _paddleHit;</a></code></pre></div>
 <p>Add the code that plays the sound when there is a collision between the paddles and the ball inside the OnTriggerEnter2D method.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb15-1" data-line-number="1">_paddleHit.<span class="fu">Play</span>();</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c#"><code class="sourceCode cs"><a class="sourceLine" id="cb15-1" title="1">_paddleHit.<span class="fu">Play</span>();</a></code></pre></div>
 <p>Select the ball gameObject from the <strong>Hierarchy Window</strong> and drag the paddle_hit file to its place in ball script.</p>
 <p>Now the game is ready, play it and enjoy your first game.</p>
 </div>
@@ -496,6 +524,7 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
 <li>Change some mechanics, the ball gets faster each time etc.</li>
 <li>Add AI to control the paddle – bonus points, hard option</li>
 </ul>
+<p>To submit your work, you need to commit your changes to Github and send me a link of your username and project.</p>
 
 </div>
 </div>
@@ -504,8 +533,8 @@ Name it as Paddles and drag Player1 and Player2 into it.</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="flappy-bird.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

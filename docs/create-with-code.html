@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>ARC451 Game Design</title>
+  <title>Chapter 5 Create With Code | ARC451 Game Design</title>
   <meta name="description" content="ARC Lecture Notes" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="ARC451 Game Design" />
+  <meta property="og:title" content="Chapter 5 Create With Code | ARC451 Game Design" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ARC451 Game Design" />
+  <meta name="twitter:title" content="Chapter 5 Create With Code | ARC451 Game Design" />
   
   <meta name="twitter:description" content="ARC Lecture Notes" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="critical-game-analysis.html"/>
 
-<link rel="next" href="pong.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -194,30 +194,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">ARC451 Game Design</h1>
-<p class="author"><em>Özgün Balaban</em></p>
+<div id="create-with-code" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Create With Code</h1>
+<p>Create with Code</p>
+<p><a href="https://learn.unity.com/course/create-with-code" class="uri">https://learn.unity.com/course/create-with-code</a></p>
+<div id="unit-1---player-control" class="section level2">
+<h2><span class="header-section-number">5.1</span> Unit 1 - Player Control</h2>
+<div id="lesson-1.1---start-your-3d-engines" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Lesson 1.1 - Start your 3D Engines</h3>
+<p>1.Introduction</p>
+<p>2.Make a course folder and new project</p>
+<p>3.Import assets and open Prototype 1</p>
+<p>4.Add your vehicle to the scene</p>
+<p>5.Add an obstacle and reposition it</p>
+<p>6.Locate your camera and run the game</p>
+<p>7.Move the camera behind the vehicle</p>
+<p>8.Customize the interface layout</p>
+<p>9.Lesson Recap</p>
 </div>
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Syllabus</h1>
-<div id="description" class="section level2">
-<h2><span class="header-section-number">1.1</span> Description</h2>
-<p>This course is an introductory course on understanding what a game is, mechanics of games and game design process. This course aims to present workflows of game devel-opment through discussions of history of games, practical implementations of simple games and a project that includes all aspects game design.</p>
-<p>Throughout the course, each week is divided roughly to three sessions. In the first part, theory of game design will be discussed. In these sessions important games from history will be shown and they will be analyzed critically. Moreover, certain concepts related games will be discussed. In the second sessions, practical knowledge will be presented to the students. Here there will be an introduction to programming, introductions to tools that will be used such as Unity game engine. The second sessions will be followed by in class activity sessions which will include small assignments or project related group work time.</p>
+<div id="lesson-1.2---pedal-to-the-metal" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Lesson 1.2 - Pedal to the Metal</h3>
+<p>1.Introduction</p>
+<p>2.Create and apply your first script</p>
+<p>3.Add a comment in the Update() method</p>
+<ul>
+<li>comments</li>
+<li>methods</li>
+<li>start method</li>
+<li>update method</li>
+</ul>
+<p>4.Give the vehicle a forward motion</p>
+<ul>
+<li>transform.Translate(0,0,1);</li>
+</ul>
+<p>5.Use a Vector3 to move forward</p>
+<ul>
+<li>transform.Translate(Vector3.forward);</li>
+</ul>
+<p>6.Customize the vehicle’s speed</p>
+<ul>
+<li>Time.deltaTime</li>
+</ul>
+<p>7.Add RigidBody components to objects</p>
+<p>Rigidbody</p>
+<p>8.Duplicate and position the obstacles</p>
 </div>
-<div id="evaluation" class="section level2">
-<h2><span class="header-section-number">1.2</span> Evaluation</h2>
-<div id="in-class-assignments-homework" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> In-class assignments – Homework:</h3>
-<p>In the practical sessions in class, there will be an implementation of a small game. These examples will be half-finished at the end of the practical sessions. Students are expected to finish these examples. Assistance will be provided.</p>
+<div id="lesson-1.3---high-speed-chase" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Lesson 1.3 - High Speed Chase</h3>
+<ol style="list-style-type: decimal">
+<li><p>Introduction</p></li>
+<li><p>Add a speed variable for your vehicle</p></li>
+</ol>
+<ul>
+<li>variable<br />
+public float speed = 5.0f;</li>
+</ul>
+<p>3.Create a new script for the camera</p>
+<p>4.Add an offset to the camera position</p>
+<p>5.Make the offset into a Vector3 variable</p>
+<p>6.Edit the playmode tint color</p>
+<ul>
+<li>Playmode Tint</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li>Lesson Recap</li>
+</ol>
 </div>
-<div id="critical-analysis-of-a-game" class="section level3">
-<h3><span class="header-section-number">1.2.2</span> Critical analysis of a game:</h3>
-<p>Each student is expected to choose a game and analyze the underlying rule-structures of the game and then visually communicate them to the class.</p>
+<div id="lesson-1.4---step-into-the-drivers-seat" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> Lesson 1.4 - Step into the Driver’s Seat</h3>
+<p>1.Introduction</p>
+<p>2.Allow the vehicle to move left/right</p>
+<p>3.Base left/right movement on input</p>
+<p>4.Take control of the vehicle speed</p>
+<p>5.Make vehicle rotate instead of slide</p>
+<p>6.Clean your code and hierarchy</p>
+<p>7.Lesson Recap</p>
 </div>
-<div id="final-project" class="section level3">
-<h3><span class="header-section-number">1.2.3</span> Final project:</h3>
-<p>For final project, students will form groups three and will create a game and present it. Development of the game will take place throughout the term and students will follow a workflow that is discussed during the lectures. The projects will be evaluated according to its creativity, programming value, and mechanics.</p>
+<div id="challenge-1---plane-programming" class="section level3">
+<h3><span class="header-section-number">5.1.5</span> Challenge 1 - Plane Programming</h3>
+<p>1.Introduction to Challenges</p>
+<p>2.Challenge 1 Overview</p>
+<p>3.The plane is going backward</p>
+<p>4.The plane is going too fast</p>
+<p>5.The plane is tilting automatically</p>
+<p>6.The camera is in front of the plane</p>
+<p>7.The camera is not following the plane</p>
+<p>8.Bonus: The plane’s propeller does not spin</p>
+</div>
+<div id="lab-1---project-design-document" class="section level3">
+<h3><span class="header-section-number">5.1.6</span> Lab 1 - Project Design Document</h3>
+<p>1.Introduction</p>
+<p>2.Understand what a Personal Project is</p>
+<p>3.Review Design Doc examples</p>
+<p>4.Complete your Project Concept V1</p>
+<p>5.Complete your Project Timeline</p>
+<p>6.Complete your MVP sketch</p>
+<p>7.Recap</p>
 
 </div>
 </div>
@@ -227,8 +299,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
+<a href="critical-game-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="pong.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -259,7 +331,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-Additional.Rmd",
 "text": "Edit"
 },
 "history": {

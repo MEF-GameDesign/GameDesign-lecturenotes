@@ -1,39 +1,95 @@
-\documentclass[]{book}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
-\usepackage[unicode=true]{hyperref}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdftitle={ARC451 Game Design},
-            pdfauthor={Özgün Balaban},
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
-\usepackage{natbib}
-\bibliographystyle{apalike}
+  pdftitle={ARC451 Game Design},
+  pdfauthor={Özgün Balaban},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
-% Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -43,31 +99,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
 \usepackage{booktabs}
 \usepackage{amsthm}
 \makeatletter
@@ -76,8 +115,10 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
 
-\title{MBL549 Machine Learning in Architecture}
+\title{ARC451 Game Design}
 \author{Özgün Balaban}
 \date{}
 
@@ -88,130 +129,1119 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter{Syllabus}\label{intro}
+\hypertarget{intro}{%
+\chapter{Syllabus}\label{intro}}
 
-\section{Class Schedule}\label{class-schedule}
+\hypertarget{description}{%
+\section{Description}\label{description}}
 
-\textbf{Spring 2020} Tuesday 13:30-1630
+This course is an introductory course on understanding what a game is, mechanics of games and game design process. This course aims to present workflows of game devel-opment through discussions of history of games, practical implementations of simple games and a project that includes all aspects game design.
 
-\section{Content}\label{content}
+Throughout the course, each week is divided roughly to three sessions. In the first part, theory of game design will be discussed. In these sessions important games from history will be shown and they will be analyzed critically. Moreover, certain concepts related games will be discussed. In the second sessions, practical knowledge will be presented to the students. Here there will be an introduction to programming, introductions to tools that will be used such as Unity game engine. The second sessions will be followed by in class activity sessions which will include small assignments or project related group work time.
 
-The course is an introduction to Machine Learning methods with examples
-from architectural design and creative coding. The course follows a
-hands on approach with many examples that will be developed during the
-course. The course includes topics from machine learning such as linear
-regression, unsupervised learning, supervised learning, reinforcement
-learning and finally neural networks. \#\# Aims To have students acquire
-practical knowledge on the tools of machine learning and different
-methodologies. To have students knowledge of applying these techniques
-to creative design process.
+\hypertarget{evaluation}{%
+\section{Evaluation}\label{evaluation}}
 
-\section{Conduct}\label{conduct}
+\hypertarget{in-class-assignments-homework}{%
+\subsection{In-class assignments -- Homework:}\label{in-class-assignments-homework}}
 
-The first half of the term includes introduction to the various machine
-learning topics. In this phase there will be practical coding sessions
-and some assignments which will be graded. In the second half of the
-term we will focus on a group project which will be developed using
-neural networks.
+In the practical sessions in class, there will be an implementation of a small game. These examples will be half-finished at the end of the practical sessions. Students are expected to finish these examples. Assistance will be provided.
 
-\section{Assessment}\label{assessment}
+\hypertarget{critical-analysis-of-a-game}{%
+\subsection{Critical analysis of a game:}\label{critical-analysis-of-a-game}}
 
-The grading for the course is as follows: hands-on practices, 50\%;
-final group project 50\%.
+Each student is expected to choose a game and analyze the underlying rule-structures of the game and then visually communicate them to the class.
 
-\subsection{Assignments}\label{assignments}
+\hypertarget{final-project}{%
+\subsection{Final project:}\label{final-project}}
 
-TBA
+For final project, students will form groups three and will create a game and present it. Development of the game will take place throughout the term and students will follow a workflow that is discussed during the lectures. The projects will be evaluated according to its creativity, programming value, and mechanics.
 
-\subsection{Final Project}\label{final-project}
+\hypertarget{pong}{%
+\chapter{PONG}\label{pong}}
 
-TBA
+Pong is a table tennis sports game featuring simple two-dimensional graphics, manufactured by Atari
+and originally released in 1972.
 
-\section{Software}\label{software}
+\begin{figure}
+\centering
+\includegraphics{Images/pong.gif}
+\caption{PONG}
+\end{figure}
 
-We will use Python in an Anaconda environment.
+In this course we are going to build PONG in UNITY.
 
-\section{Outline}\label{outline}
+\hypertarget{getting-started}{%
+\section{Getting Started}\label{getting-started}}
 
-\textbf{Week 1} Introduction
+First step is installing Unity. We installed Unity v. 2019.3 and for C\# we are using Jetbrains Rider.
 
-\textbf{Week 2} Refresher on Python
+\hypertarget{section}{%
+\subsection{}\label{section}}
 
-\textbf{Week 3} Data scraping \& Linear Regression
+After installing Unity, create a new project from Unity Hub. Set the following fields:
 
-\textbf{week 4} Unsupervised Learning
+\begin{itemize}
+\tightlist
+\item
+  Templates: Select 2D template\\
+\item
+  Project Name: You can name as Pong or any other name\\
+\item
+  Location: Select a folder
+\end{itemize}
 
-\textbf{Week 5} Supervised Learning
+\begin{figure}
+\centering
+\includegraphics{Images/newproject.png}
+\caption{New Project Settings}
+\end{figure}
 
-\textbf{Week 6} Reinforcement Learning
+Now looking at the game Pong we should list first what we need to do.
 
-\textbf{Week 7} Introduction to Neural Networks
+\begin{itemize}
+\tightlist
+\item
+  Draw shapes to the screen (paddles and ball)
+\item
+  Control 2D position of paddles based on input
+\item
+  Collision detection between paddles and ball to deflect ball back toward opponent
+\item
+  Collision detection between ball and map boundaries to keep ball within vertical bounds and to detect score (outside horizontal bounds)
+\item
+  Sound effects when ball hits paddles/walls or when a point is scored for flavor
+\item
+  Scorekeeping to determine winner
+\end{itemize}
 
-\textbf{Week 8} Break
+\hypertarget{drawing-shapes-to-the-screen}{%
+\section{Drawing Shapes to the Screen}\label{drawing-shapes-to-the-screen}}
 
-\textbf{Week 9} Neural Network examples - Project Discussion
+When you first start Unity, you should first arrange your workspace so that you can work more efficiently. First select \textbf{``Tall''} from the tab in the top right corner as seen in the image below.
 
-\textbf{Week 10} Neural Network examples
+\begin{figure}
+\centering
+\includegraphics{Images/Setting.png}
+\caption{Tall Workspace}
+\end{figure}
 
-\textbf{Week 11} Neural Network examples
+You can drag the \textbf{Game window} to the bottom of the \textbf{Screen window} to have a workspace similar to the image.
 
-\textbf{Week 12} Projects
+\begin{figure}
+\centering
+\includegraphics{Images/Setting2.png}
+\caption{Professional Workspace}
+\end{figure}
 
-\textbf{Week 13} Projects
+Now from the bottom of the \textbf{Game window} set the aspect ratio of the game. Aspect ratio adjusts the resolution of the game and ensures it looks same in all the devices.
 
-\textbf{Week 14} Projects
+Set the aspect ratio as Standalone 1024 X 768.
 
-\textbf{Week 15} Projects
+\begin{figure}
+\centering
+\includegraphics{Images/aspectRatio.png}
+\caption{Aspect ratio -- Standalone 1024 x 768}
+\end{figure}
 
-\chapter{Week 1}\label{week-1}
+Now in Unity window we have five windows open.
 
-In the first week we had a talk about the course syllabus and discussed
-about Machine Learning examples.
+\begin{itemize}
+\tightlist
+\item
+  Scene Window: Here we control the geometries that we are creating. You can manipulate objects here.
+\item
+  Game window: Here you play your games and inspect if everything works as expected.
+\item
+  Hierarchy: Here is the objects that are in the scenes.
+\item
+  Project: Project window holds your files such as assets, scripts etc.
+\item
+  Inspector: In the inspector window you can access properties of all object that you are manipulating.
+\end{itemize}
 
-For the second week we will do a refresher on Python. Please bring your
-laptops and install Anaconda with Python 3.7.
+First let's rename and save our scene. In the \textbf{Project window} select SampleScene and rename it as Game. After the change Unity will ask you to reload the scene.
 
-\section{Install Anaconda}\label{install-anaconda}
+Now we can click to camera and change the background color to black from the \textbf{Inspector window}.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Backgrounf.png}
+\caption{Changing the background color}
+\end{figure}
+
+Now, we are going to create the sprites that we will use in our game. Sprites are 2D graphics that are used in the games. For the two paddle and the ball used in the game we will use a square sprite.
+
+Right click \textbf{Project window} from the menu click \textgreater Create\textgreater Sprites\textgreater Square
+
+\begin{figure}
+\centering
+\includegraphics{Images/creatingSprite.png}
+\caption{Creating a square sprite}
+\end{figure}
+
+We will create our players by using the square sprite. First drag square sprite into the hierarchy window and name it as Player 1.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Player1.png}
+\caption{Player1 sprite}
+\end{figure}
+
+Next, we need to scale the sprite so that it becomes a rectange. Select player 1 sprite and from the inspector window, set X scale to 0.5 and y scale to 2.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Player1-scale.png}
+\caption{Scaling Player1 sprite}
+\end{figure}
+
+Player1 should be at the left side of the screen so let's change the position of the Player1. Set the X position to -6.4.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Player1-position.png}
+\caption{Changing the location of Player1 sprite}
+\end{figure}
+
+Next, we should create Player 2. To do this, right click on Player 1 and select duplicate. From the inspector window, change the name to ``Player2'' and X position to 6.4 to move Player 2 to the right side of the screen.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Player2.png}
+\caption{Player2 sprite}
+\end{figure}
+
+Lastly, we should create the ball from the sprite. Drag square to \textbf{Hierarchy window}. Click over the sprite and change the name to ball. Next, change the scale of X and Y to 0.3.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Ball.png}
+\caption{Ball sprite}
+\end{figure}
+
+And to gather Player1 and Player2 in one folder create an empty GameObject by right clicking \textbf{Hierarchy window} \textgreater Create Empty.
+Name it as Paddles and drag Player1 and Player2 into it.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Paddles.png}
+\caption{Empty Paddles GameObject}
+\end{figure}
+
+\hypertarget{user-input}{%
+\section{User Input}\label{user-input}}
+
+In the last step, we have created our paddles and the ball. However, they are static and they don't move with input. So let's connect the paddles to user input.
+
+First, we should setup the controls to be used in the game.
+
+From Edit Menu click \textgreater Edit\textgreater Project Settings.
+
+Select Input Manager from the left side of the window. And duplicate Vertical Axes by right clicking over it.
+
+\begin{figure}
+\centering
+\includegraphics{Images/InputManager.png}
+\caption{Duplicate Vertical Axes}
+\end{figure}
+
+Change the vertical Axes to Player1 by changing the name. Player1 will use w for up and s for down. So set the \textbf{Negative Button} as s and set \textbf{Positive Button} as w. Delete alt negative and alt positive buttons.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Player1controls.png}
+\caption{Player1 controls w for up and s for down}
+\end{figure}
+
+Similarly, change the other vertical axes as Player2 and set the \textbf{Negative Button} as down and set \textbf{Positive Button} as up. Delete alt negative and alt positive buttons.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Player2controls.png}
+\caption{Player1 controls up for up and down for down}
+\end{figure}
+
+To control the paddles using the input buttons we should create a C\# script. Right Click on Project Window and \textgreater Create\textgreater C\# Script
+
+\begin{figure}
+\centering
+\includegraphics{Images/createScript.png}
+\caption{Create Paddle Script}
+\end{figure}
+
+Name the script as Paddle and double click it. Double clicking a script file will bring up C\# editor. It can be Jetbrains rider or Visual Studio Code according to your installation.
+
+First, we should setup our variables. We will use three variables.
+
+\begin{itemize}
+\tightlist
+\item
+  \_speed: holds the speed of the movement of the paddles
+\item
+  player1: refers GameObject of Player1
+\item
+  player2: refers GameObject of Player1
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[SerializeField] }\KeywordTok{private} \DataTypeTok{float}\NormalTok{ _speed = 4f;}
+\NormalTok{[SerializeField] GameObject player1;}
+\NormalTok{[SerializeField] GameObject player2;}
+\end{Highlighting}
+\end{Shaded}
+
+SerializeField in Unity means any variable that we have created will be accessible in the Unity interface. For more info: \url{https://docs.unity3d.com/ScriptReference/SerializeField.html}
+
+After setting up our variable we can create Update() method.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// player1 - left player - movements}
+\DataTypeTok{float}\NormalTok{ verticalInput1 = Input.}\FunctionTok{GetAxis}\NormalTok{(}\StringTok{"Player1"}\NormalTok{);}
+\NormalTok{Vector3 direction1 = }\KeywordTok{new} \FunctionTok{Vector3}\NormalTok{(}\DecValTok{0}\NormalTok{, verticalInput1, }\DecValTok{0}\NormalTok{);}
+\NormalTok{player1.}\FunctionTok{transform}\NormalTok{.}\FunctionTok{Translate}\NormalTok{(Time.}\FunctionTok{deltaTime}\NormalTok{ * _speed * direction1);}
+\end{Highlighting}
+\end{Shaded}
+
+Here verticalInput1 receives the movement from the Player1 axes that we have created. According to the values we get, we create a direction1 vector3 which only receives values for Y axis since our player1 only moves up and down. And finally we move player1 every second.
+
+We repeat the same code for player2:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Player 2 - right player - movements }
+\DataTypeTok{float}\NormalTok{ verticalInput2 = Input.}\FunctionTok{GetAxis}\NormalTok{(}\StringTok{"Player2"}\NormalTok{);}
+\NormalTok{Vector3 direction2 = }\KeywordTok{new} \FunctionTok{Vector3}\NormalTok{(}\DecValTok{0}\NormalTok{, verticalInput2, }\DecValTok{0}\NormalTok{);}
+\NormalTok{player2.}\FunctionTok{transform}\NormalTok{.}\FunctionTok{Translate}\NormalTok{(Time.}\FunctionTok{deltaTime}\NormalTok{ * _speed * direction2);}
+\end{Highlighting}
+\end{Shaded}
+
+Now we need to associate Paddle script with PaddleS folder we have created. Drag the Paddle script from the \textbf{Project Window} to \textbf{Hierarchy Window} and drop it over the Paddles folder. Click on the Paddles folder and from the inspector window check if you can see Paddle (Script). Now drag Player1 from the \textbf{Hierarchy Window} to Player1 in Inspector and repeat this for Player2.
+
+\begin{figure}
+\centering
+\includegraphics{Images/AssociateScript.png}
+\caption{Associate the script with Paddles}
+\end{figure}
+
+Finally, if we click the play button, the game starts and we can control our paddles.
+
+\begin{figure}
+\centering
+\includegraphics{Images/PaddleScript.png}
+\caption{Paddle Script with the controls}
+\end{figure}
+
+\hypertarget{player-bounds}{%
+\section{Player Bounds}\label{player-bounds}}
+
+In the last section, we set up movements with the keyboard input. However, the paddles can go out of the bounds of the game space. We need to restrict the movement of the paddles to the screen size.
+
+To achieve this we need to include two \textbf{if} statements to check if the paddles are at the top or bottom of the screen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{if}\NormalTok{ (player1.}\FunctionTok{transform}\NormalTok{.}\FunctionTok{position}\NormalTok{.}\FunctionTok{y}\NormalTok{ < }\FloatTok{-3.9}\NormalTok{ && verticalInput1 < }\DecValTok{0}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  verticalInput1 = }\DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\KeywordTok{else} \KeywordTok{if}\NormalTok{ (player1.}\FunctionTok{transform}\NormalTok{.}\FunctionTok{position}\NormalTok{.}\FunctionTok{y}\NormalTok{ > }\FloatTok{3.9}\NormalTok{ && verticalInput1 > }\DecValTok{0}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  verticalInput1 = }\DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Here the first if clause checks if player1's position is at the top of the screen which is -3.9, if it then the code sets the speed of the paddle to 0 which stops the movement. Similarly there is an another if statement which checks if player1 is at the bottom of the screen and again this also stops the paddle which ensures the paddle stays inside the screen.
+
+We need to do the same check for player2 which makes the code like below.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Bounds.png}
+\caption{Script change to keep paddles inside the screen}
+\end{figure}
+
+\hypertarget{ball-movement}{%
+\section{Ball Movement}\label{ball-movement}}
+
+Now, we should make the ball move. For this we will create a ball script. Right click the \textbf{Project Window} \textgreater Create\textgreater C\# Script and name it as ball.
+
+To make it tidier in the Project Window, create a folder and name it as Scripts and put Ball and Paddle script inside the Scripts folder.
+
+We should start the game by hitting a key which will serve the ball. First, we should set the variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[SerializeField] }\KeywordTok{private} \DataTypeTok{float}\NormalTok{ _speed = 4f;}
+\KeywordTok{private} \DataTypeTok{bool}\NormalTok{ serve = }\KeywordTok{true}\NormalTok{;  }\CommentTok{// boolean to indicate serve action}
+\KeywordTok{private} \DataTypeTok{bool}\NormalTok{ end = }\KeywordTok{false}\NormalTok{;  }\CommentTok{// game ends}
+\KeywordTok{private}\NormalTok{ Vector3 direction; }\CommentTok{// direction of the ball}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \_speed: controls the speed of the ball.
+\item
+  serve: Indicates the serve state
+\item
+  end: indicates the end state which ends the game
+\item
+  direction: direction of the ball as Vector3
+\end{itemize}
+
+Next we should create our code, if the state is serve and someone presses Enter the ball should start moving in a random direction.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{if}\NormalTok{ (Input.}\FunctionTok{GetKeyDown}\NormalTok{(KeyCode.}\FunctionTok{Return}\NormalTok{) && serve)}
+\NormalTok{\{}
+\NormalTok{  direction = }\KeywordTok{new} \FunctionTok{Vector3}\NormalTok{(Random.}\FunctionTok{Range}\NormalTok{(-}\FloatTok{4.0f}\NormalTok{, 4f), Random.}\FunctionTok{Range}\NormalTok{(-}\FloatTok{8.0f}\NormalTok{, 8f), }\DecValTok{0}\NormalTok{);}
+\NormalTok{  serve = }\KeywordTok{false}\NormalTok{;}
+\NormalTok{\}}
+\KeywordTok{if}\NormalTok{ (!serve)}
+\NormalTok{\{}
+\NormalTok{  transform.}\FunctionTok{Translate}\NormalTok{(Time.}\FunctionTok{deltaTime}\NormalTok{ * _speed * direction);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+After creating this script, we should drag the ball script over the ball GameObject. If we start the game, with a press to Return key the ball starts moving. However, since we did not set up the boundary to the ball it goes out of bounds.
+
+\begin{figure}
+\centering
+\includegraphics{Images/BallScript.png}
+\caption{Ball Script}
+\end{figure}
+
+Next we will set up the boundary for the ball to bounce from the sides of the screen.
+
+\hypertarget{bouncing-from-the-sides}{%
+\section{Bouncing from the sides}\label{bouncing-from-the-sides}}
+
+For this the y position of the ball should be between -4.8 and 4.8. We will put two if conditionals; if the y position of the ball is bigger than 4.8, ball's direction should flip in the y direction. Similarly, if the y position of the ball is lesser than -4.8 ball's direction should flip in the y direction as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{if}\NormalTok{ (transform.}\FunctionTok{position}\NormalTok{.}\FunctionTok{y}\NormalTok{ > }\FloatTok{4.8}\NormalTok{ && direction.}\FunctionTok{y}\NormalTok{ > }\DecValTok{0}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  direction.}\FunctionTok{y}\NormalTok{ = -direction.}\FunctionTok{y}\NormalTok{;}
+\NormalTok{\}}
+\KeywordTok{if}\NormalTok{ (transform.}\FunctionTok{position}\NormalTok{.}\FunctionTok{y}\NormalTok{ < }\FloatTok{-4.8}\NormalTok{ && direction.}\FunctionTok{y}\NormalTok{ < }\DecValTok{0}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  direction.}\FunctionTok{y}\NormalTok{ = -direction.}\FunctionTok{y}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+By adding these clauses will ensure that the ball stays in the boundary of the screen.
+
+\begin{figure}
+\centering
+\includegraphics{Images/BallBoundary.png}
+\caption{Keep the ball inside the boundary}
+\end{figure}
+
+\hypertarget{collider-for-ball-and-paddles}{%
+\section{Collider for Ball and Paddles}\label{collider-for-ball-and-paddles}}
+
+The game is still not playable since it does not collide with the paddles. We should add rigidbody2d and box collider to the player1 \& player2 gameObjects and to the ball gameobject. To add rigidbody2d to player1, we click on the player1 in the \textbf{Hierarchy Window} and from the \textbf{Inspector Window} we click on add component and type rigidbody2d.
+
+\begin{figure}
+\centering
+\includegraphics{Images/AddComponent.png}
+\caption{Add Component}
+\end{figure}
+
+In the rigidbody2d, in Body Type tab select Kinematic. Kinematic ensures there is no gravity and all the movements occur according to our control.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Rigidbody2d.png}
+\caption{Rigidbody2 - Kinematic}
+\end{figure}
+
+After adding rigidbody2d to all three gameObjects, we should add boxCollider2d for them as well. From the same place that we added rigidbody2d this time we add boxcollider2d.
+
+\begin{figure}
+\centering
+\includegraphics{Images/BoxCollider2d.png}
+\caption{BoxCollider2D}
+\end{figure}
+
+In the BoxCollider2d menu we should select IsTrigger option.
+
+\begin{figure}
+\centering
+\includegraphics{Images/IsTrigger.png}
+\caption{Is Trigger}
+\end{figure}
+
+After adding rigidbody2d and boxcollider2d, now we should handle the code. Openning up ball script, we create OnTriggerEnter2D method. This methods calls up when two objects collide.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{private} \DataTypeTok{void} \FunctionTok{OnTriggerEnter2D}\NormalTok{(Collider2D other)}
+\NormalTok{\{}
+\NormalTok{  direction.}\FunctionTok{x}\NormalTok{ = -direction.}\FunctionTok{x}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+This is a very simple method. It flips the direction of the ball when there is a collision between the ball and the paddle. So the new ball script is:
+
+\begin{figure}
+\centering
+\includegraphics{Images/BallScript2.png}
+\caption{Updated Ball Script}
+\end{figure}
+
+\hypertarget{score}{%
+\section{Score}\label{score}}
+
+Next, we should be able to determine if there is a score and reset the game if there is a score, starting the game from the center of the screen with a key press again.
+
+To keep up the score we create two new variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{private} \DataTypeTok{int}\NormalTok{ player1Score = }\DecValTok{0}\NormalTok{;}
+\KeywordTok{private} \DataTypeTok{int}\NormalTok{ player2Score = }\DecValTok{0}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+We will include a code to check the position of the ball and if the ball's position is lesser than -6.7, means the ball has left the screen from the left thus player2 wins a score. If that happens we call the reset method and increase player2 score. If the score is 15 then the game ends, else the ball is returned to the center to be served again,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{if}\NormalTok{ (transform.}\FunctionTok{position}\NormalTok{.}\FunctionTok{x}\NormalTok{ < }\FloatTok{-6.7}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  player2Score++;}
+  \FunctionTok{Reset}\NormalTok{();}
+  \KeywordTok{if}\NormalTok{ (player2Score == }\DecValTok{15}\NormalTok{)}
+\NormalTok{  \{}
+\NormalTok{    end = }\KeywordTok{true}\NormalTok{;}
+\NormalTok{  \} }\KeywordTok{else}\NormalTok{ \{serve = }\KeywordTok{true}\NormalTok{;\}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Reset method just centers the ball.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{private} \DataTypeTok{void} \FunctionTok{Reset}\NormalTok{()}
+\NormalTok{\{}
+\NormalTok{  transform.}\FunctionTok{position}\NormalTok{ = }\KeywordTok{new} \FunctionTok{Vector3}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+After adding these codes and repeating the process for the right side, we have the scoring component of the game.
+
+\hypertarget{score-update-and-ui}{%
+\section{Score update and UI}\label{score-update-and-ui}}
+
+Next we need to show the scores in User Interface (UI). For this we need to Add Text to the Screen.
+
+Right clicking \textbf{Hierarchy Window}, select \textgreater Create\textgreater UI\textgreater Text.
+
+\begin{figure}
+\centering
+\includegraphics{Images/UIText.png}
+\caption{Adding UI Text}
+\end{figure}
+
+We should first name the UI Text as Player1ScoreText.Next we click on the anchor icon and select top, center. And adjust PosX as -150, Pos Y as -100, Text as 0, Font Size as 100, Horizontal Overflow as overflow and Vertical Overflow as overflow as in the image below.
+
+\begin{figure}
+\centering
+\includegraphics{Images/Player1ScoreText.png}
+\caption{Setting Up Player 1 Score Text}
+\end{figure}
+
+We should do the same for Player2, so right click on it and duplicate. Change its name as Player2ScoreText and PosX as 150.
+
+After this step, we should associate this text and use it in our ball script. So we should add following variables to the code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[SerializeField] }\KeywordTok{private}\NormalTok{ Text player1ScoreText;}
+\NormalTok{[SerializeField] }\KeywordTok{private}\NormalTok{ Text player2ScoreText;}
+\end{Highlighting}
+\end{Shaded}
+
+And these fields should be updated each time there is a score so we add the following code after the Reset function call.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{player2ScoreText.}\FunctionTok{text}\NormalTok{ =  player2Score.}\FunctionTok{ToString}\NormalTok{();}
+\end{Highlighting}
+\end{Shaded}
+
+After adding these two code snippets we should click on Ball gameobject and drag Player1ScoreText and Player2ScoreText to its places.
+
+Finally, our game mechanics works, next we will add sound that plays when there is a collision between the ball and the paddles.
+
+\hypertarget{sound}{%
+\section{Sound}\label{sound}}
+
+For the sound, you should download the sound file from Github. Place the paddle\_hit file inside the assets folder. Drag the file into the \textbf{Hierarchy window}.
+
+Add a variable in ball script.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[SerializeField] }\KeywordTok{private}\NormalTok{ AudioSource _paddleHit;}
+\end{Highlighting}
+\end{Shaded}
+
+Add the code that plays the sound when there is a collision between the paddles and the ball inside the OnTriggerEnter2D method.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{_paddleHit.}\FunctionTok{Play}\NormalTok{();}
+\end{Highlighting}
+\end{Shaded}
+
+Select the ball gameObject from the \textbf{Hierarchy Window} and drag the paddle\_hit file to its place in ball script.
+
+Now the game is ready, play it and enjoy your first game.
+
+\hypertarget{assignment}{%
+\section{Assignment}\label{assignment}}
+
+Now I want you to improve 5 aspects of the game. Some ideas:
+
+\begin{itemize}
+\tightlist
+\item
+  Change background color, add texture etc.
+\item
+  Change colors/textures etc. of paddles
+\item
+  Change some mechanics, the ball gets faster each time etc.
+\item
+  Add AI to control the paddle -- bonus points, hard option
+\end{itemize}
+
+To submit your work, you need to commit your changes to Github and send me a link of your username and project.
+
+\hypertarget{flappy-bird}{%
+\chapter{Flappy Bird}\label{flappy-bird}}
+
+Flappy Bird is a mobile game developed by Vietnamese video game artist and programmer Dong Nguyen, under his game development company dotGears. The game is a side-scroller where the player controls a bird, attempting to fly between columns of green pipes without hitting them.
+
+\begin{figure}
+\centering
+\includegraphics{Images/flappy.gif}
+\caption{Flappy Bird}
+\end{figure}
+
+In this course we are going to build Flappy Bird in UNITY.
+
+\hypertarget{initial-setup}{%
+\section{Initial Setup}\label{initial-setup}}
+
+Setting up the aspect ratio
+
+\hypertarget{critical-game-analysis}{%
+\chapter{Critical Game Analysis}\label{critical-game-analysis}}
+
+I am going to briefly cover how to do a critical game analysis. However, there are many ways, try to be
+creative.
+
+Some parts of this text is taken from various sources.
+
+References:
+- \url{https://ocw.mit.edu/courses/comparative-media-studies-writing/cms-300-introduction-to-videogame-studies-fall-2011/assignments/game-analysis/MITCMS_300F11_GameAnaGuide.pdf}
+- \url{https://learn.canvas.net/courses/3/pages/level-3-dot-2-critical-analysis-of-games}
+
+\hypertarget{first-step-is-selecting-a-game.}{%
+\section{First step is selecting a game.}\label{first-step-is-selecting-a-game.}}
+
+You need to first select a game for this study. Try to select a game that will help you in ideation phase for your project.
+It can be because of the graphics, gameplay, controls, theme etc.
+
+\hypertarget{before-you-start-analysing-play-the-game}{%
+\section{Before you start analysing: play the game}\label{before-you-start-analysing-play-the-game}}
+
+\begin{itemize}
+\tightlist
+\item
+  Play the game extensively
+\end{itemize}
+
+Try to complete the game, or at least familiarize yourself with all the modes. You
+should master the game as much as you can. If you've played it before, play it
+again, to have the game fresh in your mind---replay always helps achieving new
+insights about the game. The time you should be playing the game varies from
+game to game. In your analysis, be explicit about how you played the game, if
+there are different options (e.g.~level of difficulty, character that you used.)
+
+\begin{itemize}
+\tightlist
+\item
+  Take notes while you play.
+\end{itemize}
+
+It's good to keep track of things you come across in the game. What do you like?
+
+What don't you like? Is there something that you did not expect? Does a specific
+part of the game remind you of something else (another game, or a movie, or
+some other event)? Taking notes of potential examples for your paper is also a
+good habit. If you can have a corresponding savegame for reference, even better.
+
+\begin{itemize}
+\tightlist
+\item
+  You can take some help such as walktroughs.
+\end{itemize}
+
+Anyone can get stuck and might need help, especially if it prevents them from
+getting far enough in the game (and therefore from playing it extensively). Cheat
+codes, watching walkthrough videos, or having a friend play for you are ways to
+help you know more about the game, but they should not be the predominant
+mode in which you experience it.
+
+\begin{itemize}
+\tightlist
+\item
+  Read what other people have written about the game
+\end{itemize}
+
+\hypertarget{contextualize}{%
+\section{Contextualize}\label{contextualize}}
+
+Providing a frame of reference to understand your analysis is basic to make it
+accessible to your reader, particularly if they are not familiar with the game.
+Games, like any other media artifacts, are not produced in a void. They are the
+product of their times: the technology available at the moment, the people who
+made them, or other socio-cultural trends that marked that historical moment.
+
+\begin{itemize}
+\item
+  Game Developer/Studio; Artists, Designers, Programmers, Writers (or whoever
+  is relevant).
+  The creative team of a game is important, particularly in the case where it
+  connects to other relevant games they worked on before or after this game. Some
+  development studios or designers have certain trademarks, or specialize on a
+  particular genre (e.g.~Valve, Square Enix or Will Wright), so choosing one of their
+  games can mark a specific time in the evolution of their games, which might be
+  important to the context of your analysis.
+\item
+  Game genre and related games
+  A game genre usually has a set of established conventions behind it, such as First
+  Person Shooters, adventure games, real-time strategy games or Role-Playing
+  Games. Establishing the game within a genre can help determine, for instance,
+  why it is like other games of the same type, or what is innovative about it. If the
+  game partakes of conventions from different genres, that can also be a way of
+  explaining what sets it apart from other games. The relations to other game
+  genres do not have to be exclusively digital--board and card games, as well as
+  other traditional games, can be the origins of certain mechanics.
+  The game of your choice can relate to other games by any of the elements listed
+  on these guidelines: developer, genre, publisher, by being released at the same
+  time, similar mechanics, similar themes (e.g.~space flight simulators), being part
+  of a franchise (e.g.~Star Wars or Mario), using similar controls, games that it has
+  influenced or that later tried to copy it, etc.
+\item
+  Technological context
+  What platform(s) was the game developed for? It is important to note which
+  version of the game you are playing, e.g.~Assassin's Creed for the DS is a different
+  game from the PS3 version. The technology will determine, for instance, the
+  length of the game or whether there is an ending (think of arcade games in the
+  early 80s, where games typically did not end). In other cases, such as the Virtual
+  Boy or the Wii, the technology can also shape the way the way the game is played.
+\item
+  Socio-historical context
+  When was the game made? It's different to analyze a game from the 70s, when
+  videogames were almost exclusively played in arcades, than a recent game, now
+  that videogames start to enjoy a more general acceptance in cultural terms.
+  Where was it released? A game released in the US in the mid 80s (after the socalled videogame crash) may not have had the same influence as a game released
+  in Europe (where videogames were played almost exclusively in home
+  computers).
+\item
+  Audience
+  Who is the game intended for? Games can create communities around them, at
+  times fostered by the developers themselves. The fans of a particular game can be
+  a phenomenon worth studying in itself, for example, as creators of content for it,
+  as critics/reviewers, or as assistants to other players by providing walkthroughs
+  or strategy guides. Studying the game community in depth can veer away from
+  the textual analysis provided here, so be aware that if you study the community
+  you may not be analyzing the game itself. It is a perfectly valid analysis, but
+  different from the one proposed here.
+\item
+  Relations to other media
+  Is the game part of a franchise, a tie-in with a work in another medium (e.g.~Lost Via Domus, Wall-E)? Is it an adaptation of the work in another medium, or is it
+  only using the same characters and settings? Is it inspired by a situation or
+  premise of another medium (e.g.~Dead Rising taking the zombies-in-a-mall
+  premise of Dawn of the Dead)? Does it incorporate and re-work pre-existing
+  stories (e.g.~Too Human using Norse mythology as the basis for its story, but
+  transposing it to a high-tech world) Does it use other works as documentation,
+  background or inspiration (e.g.~the writings of Ann Rynd as background
+  reference to Bioshock)?
+\end{itemize}
+
+\hypertarget{game-overview}{%
+\section{Game Overview}\label{game-overview}}
+
+It is always good to explain briefly what you do in the game to someone who has
+not played it or is not familiar with it. Do not always take your audience's
+knowledge for granted, explain the game to them, so that they are aware of how
+you understand it. Give your reader an idea of what gameplay is like.
+
+\begin{itemize}
+\tightlist
+\item
+  No.~of Players (single player/multi-player/MMO)
+\end{itemize}
+
+Can you choose the number of players? Does it have different modes depending
+on the number of players? If there is more than one player, do they play
+simultaneously or do they take turns?
+
+\begin{itemize}
+\tightlist
+\item
+  Rules and goals of the game
+\end{itemize}
+
+Make a summary of the basic rules of the game, a summarized version of the
+instructions, as it were. If the game has an end / a win state, what is it? If it does
+not, it's also worth explaining whether it is an endless game, or whether there are
+multiple goals, or whether the player is able to set their own goals/win state (e.g.
+
+The Sims). Does the game have different modes, where the rules change slightly?
+
+\begin{itemize}
+\tightlist
+\item
+  Description of Gameplay: what do you do in the game?
+\end{itemize}
+
+Focus on the core mechanics: what are the most recurring actions in the game?
+
+You can think of this in terms of verbs: what are the main verbs of the game? For
+example, in Super Mario Bros.~the verbs would be run, jump, pick up, slide
+
+down, stomp. In Tetris, the verbs would be rotate, drop, clear.
+
+\begin{itemize}
+\tightlist
+\item
+  Spaces of the game
+\end{itemize}
+
+Where does the game take place? How does the player navigate the space? How
+does the game encourage exploration of the space, if at all? Are there different
+types of spaces, corresponding to different levels? Does the space or navigation
+do anything that is not possible in the real world? How does the space of the
+game relate to the space of the player?
+
+\begin{itemize}
+\tightlist
+\item
+  Aesthetics: general gameplay experience
+\end{itemize}
+
+This section is a tricky one, since your experience will probably be different from
+other people's. Your skills or game knowledge affect the way you play the game.
+
+You can contrast your own gameplay with that of other players by reading
+walkthroughs or reviews. You can also compare how you played with the
+experience intended by the developers, if you find interviews or postmortems
+where they express that intention. Do not try to generalize your opinion--your
+
+experience is valid as long as it is qualified. Do not guess what the intentions of
+the game makers are from what you see in the game, you should have factual
+evidence, so use concrete examples.
+
+\begin{itemize}
+\tightlist
+\item
+  Rules and Fiction
+\end{itemize}
+
+How is the setting presented outside and in the game? How does the game live up
+to it? How does it establish the fictional world of the game? How does it relate to
+the rules and goals of the game? If the game has a strong story component, you
+may summarize its premise; however, you should avoid turning your analysis
+into a retelling of the story of the game.
+
+\hypertarget{formal-elements}{%
+\section{Formal Elements}\label{formal-elements}}
+
+In this section, you have to identify the different game elements that make up the
+game system, and establish the relationships between them.
+
+\begin{itemize}
+\item
+  \textbf{Gameworld rules}
+  What model is the game trying to simulate? How does the gameworld work,
+  outside of the rules of the game? For instance, San Andreas in Grand Theft Auto:
+  San Andreas is a city where pedestrians walk on the side walk, cars run at
+  normal speed on the road and follow traffic rules, and the day/night cycle
+  changes every 20 minutes. This could be called a simulation of the real world,
+  within certain limits. Other examples can refer to the difference between what is
+  possible in the gameworld and what the player is allowed to do. For example, in
+  the main mode of Halo characters talk to each other in cut-scenes, but the player
+  cannot choose when to talk or what to say. What is possible or impossible in a
+  game is the direct result of decisions made in the design of the game, and you
+  have to be aware of those choices.
+\item
+  \textbf{Simulation and Levels of Abstraction}
+  What level of abstraction is the game using? How nuanced is the simulation in
+  the game? For example, Diner Dash simulates the strategic aspects of
+  waitressing, where the key is to optimize your path to do the most things the least
+  amount of time, but does not include taking down people's orders and
+  memorized who ordered what. How complex is the simulation, depending on that
+  level of abstraction.
+\item
+  \textbf{Game mechanics and resulting dynamics}
+  From the rules of the game described above, What are the main strategies? What
+  is their range (i.e.~are there just a couple of strategies or is there a wide variety)?
+  Are there any emergent strategies that are possible but may not have been
+  predicted by the developers? Does the game accommodate different play styles?
+  Can the player save the game? If so, can the game be saved at any point, or does
+  the game regulate when to save the game?
+\item
+  \textbf{The gap between the game and the player: Player character, mediation, interface design}
+  How does the player have agency in the gameworld? How is the information
+  displayed on the screen? Is the interaction menu-based (as in Sim City)? Is there
+  a player character who represents the player in the world? Is it a given character
+  or is it customizable? Can the player character die or not? Does the player
+  manipulate the objects directly, without a player character or avatar (e.g.~in
+  puzzle games like Bejeweled)? Can the player select different entities in the world
+  at a time (as in real-time strategy games)? How is gameplay information
+  conveyed through the visuals / audio?
+\item
+  Difficulty levels and game balancing.
+  Are there different difficulty levels? How is the level of difficulty increased? Is it
+  well-balanced, i.e.~the game becomes difficult at reasonable increases? What
+  proficiency does the game expect from the player? Is it easy to pick up, difficult to
+  master? How does the game teach you how to play it, if at all? Is there a tutorial,
+  or does the game introduce one new element on each level?
+\item
+  Control schemes; control peripherals
+  Does the player have to type the commands of the game? Does it use the mouse/a
+  game controller/a special peripheral? Does the game allow different ways to
+  configure your controls? Does the game allow voice input (e.g.~voice chat in an
+  MMO, or voice controls)? How do the controls affect and shape gameplay?
+\item
+  Audiovisuals: visual design, sound design, music
+  What is the audiovisual style of the game? Does it evoke / imitate the style of
+  other media (e.g.~painting, photography, cinema, classical music)? Does it use
+  other games as aesthetic reference (e.g.~retro games)? What is the color scheme?
+  How do these audiovisual elements contribute to the fiction of the game? How do
+  they contribute to the mood of the game?
+\item
+  Progression vs Emergence
+  Does the game force the player to follow a specific sequence? How does the game
+  guide the player to the correct action? Are there multiple paths? Are there
+  emergent behaviors, or is there room for emergent gameplay? How does the
+  game encourage players to experiment with it?
+\item
+  Mods / Modes / Cheats / Hacks
+  You may be interested in surveying different gameplay modes, that may not be
+  the standard for most players, such as user-developed levels, or different modes
+  of the game (such as the no-fail mode of Rock Band 2, or the crash mode of
+  Burnout, or the multiplayer modes of Diablo 2). Cheats and game hacks have a
+  great potential as texts to analyze, since they can become commentaries on the
+  original game and reveal hidden or non-obvious aspects of the game.
+\end{itemize}
+
+\hypertarget{round-up-your-discussion}{%
+\section{Round up your discussion}\label{round-up-your-discussion}}
+
+Remember to finish off the paper with a conclusion. Reiterate the main points of
+your paper, what you want your reader to remember, the core of your paper in
+brief. This is an opportunity to ratify your thesis statement, re-stating it and
+summarizing how your evidence supports it. A conclusion can also address one of
+the following points, based on your discussion.
+- Why is this game relevant to the study of games?
+- What is innovative about game? Can it be applied to other games?
+- Open up to further questions that need addressing, in videogame theory, game
+design, more game analysis, etc.
+
+\hypertarget{create-with-code}{%
+\chapter{Create With Code}\label{create-with-code}}
+
+Create with Code
+
+\url{https://learn.unity.com/course/create-with-code}
+
+\hypertarget{unit-1---player-control}{%
+\section{Unit 1 - Player Control}\label{unit-1---player-control}}
+
+\hypertarget{lesson-1.1---start-your-3d-engines}{%
+\subsection{Lesson 1.1 - Start your 3D Engines}\label{lesson-1.1---start-your-3d-engines}}
+
+1.Introduction
+
+2.Make a course folder and new project
+
+3.Import assets and open Prototype 1
+
+4.Add your vehicle to the scene
+
+5.Add an obstacle and reposition it
+
+6.Locate your camera and run the game
+
+7.Move the camera behind the vehicle
+
+8.Customize the interface layout
+
+9.Lesson Recap
+
+\hypertarget{lesson-1.2---pedal-to-the-metal}{%
+\subsection{Lesson 1.2 - Pedal to the Metal}\label{lesson-1.2---pedal-to-the-metal}}
+
+1.Introduction
+
+2.Create and apply your first script
+
+3.Add a comment in the Update() method
+
+\begin{itemize}
+\tightlist
+\item
+  comments
+\item
+  methods
+\item
+  start method
+\item
+  update method
+\end{itemize}
+
+4.Give the vehicle a forward motion
+
+\begin{itemize}
+\tightlist
+\item
+  transform.Translate(0,0,1);
+\end{itemize}
+
+5.Use a Vector3 to move forward
+
+\begin{itemize}
+\tightlist
+\item
+  transform.Translate(Vector3.forward);
+\end{itemize}
+
+6.Customize the vehicle's speed
+
+\begin{itemize}
+\tightlist
+\item
+  Time.deltaTime
+\end{itemize}
+
+7.Add RigidBody components to objects
+
+Rigidbody
+
+8.Duplicate and position the obstacles
+
+\hypertarget{lesson-1.3---high-speed-chase}{%
+\subsection{Lesson 1.3 - High Speed Chase}\label{lesson-1.3---high-speed-chase}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
 \item
-  Install Anaconda\\
-  \url{https://www.anaconda.com/distribution/\#download-section}
+  Introduction
 \item
-  Click on start menu and choose anaconda prompt'(windows) OR run
-  terminal (osx/ubuntu)
-\item
-  Create a virtual environment (e.g. `mbl-ml', could be any name you
-  like):\\
-  • \textgreater{} conda create -n mbl-ml python=3.7 ipykernel
-\item
-  Activate the virtual environment:\\
-  • \textgreater{} source activate mbl-ml
-\item
-  Install dependencies:\\
-  • Change directory to where the given file (requirements.txt)
-  resides.\\
-  • \textgreater{} cd (just drag your folder into the cmd/terminal)\\
-  • \textgreater{} pip install -r requirements.txt\\
-\item
-  Make kernel accessible in jupyter notebook:\\
-  • \textgreater{} python -m ipykernel install --user --name mbl-ml\\
-\item
-  Go to the directory that you would like to save your notebooks •
-  \textgreater{} cd (just drag your folder into the cmd/terminal)
-\item
-  Run jupyter notebook: • \textgreater{} jupyter notebook
-\item
-  Create new file and set kernel to `mbl-ml'
-\item
-  To shut down jupyter: • Press cmd `C' or \textgreater{} ctrl `C' at
-  the terminal/cmd prompt
-\item
-  To deactivate virtual environment: • \textgreater{} conda deactivate
+  Add a speed variable for your vehicle
 \end{enumerate}
 
-\bibliography{book.bib,packages.bib}
+\begin{itemize}
+\tightlist
+\item
+  variable\\
+  public float speed = 5.0f;
+\end{itemize}
+
+3.Create a new script for the camera
+
+4.Add an offset to the camera position
+
+5.Make the offset into a Vector3 variable
+
+6.Edit the playmode tint color
+
+\begin{itemize}
+\tightlist
+\item
+  Playmode Tint
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Lesson Recap
+\end{enumerate}
+
+\hypertarget{lesson-1.4---step-into-the-drivers-seat}{%
+\subsection{Lesson 1.4 - Step into the Driver's Seat}\label{lesson-1.4---step-into-the-drivers-seat}}
+
+1.Introduction
+
+2.Allow the vehicle to move left/right
+
+3.Base left/right movement on input
+
+4.Take control of the vehicle speed
+
+5.Make vehicle rotate instead of slide
+
+6.Clean your code and hierarchy
+
+7.Lesson Recap
+
+\hypertarget{challenge-1---plane-programming}{%
+\subsection{Challenge 1 - Plane Programming}\label{challenge-1---plane-programming}}
+
+1.Introduction to Challenges
+
+2.Challenge 1 Overview
+
+3.The plane is going backward
+
+4.The plane is going too fast
+
+5.The plane is tilting automatically
+
+6.The camera is in front of the plane
+
+7.The camera is not following the plane
+
+8.Bonus: The plane's propeller does not spin
+
+\hypertarget{lab-1---project-design-document}{%
+\subsection{Lab 1 - Project Design Document}\label{lab-1---project-design-document}}
+
+1.Introduction
+
+2.Understand what a Personal Project is
+
+3.Review Design Doc examples
+
+4.Complete your Project Concept V1
+
+5.Complete your Project Timeline
+
+6.Complete your MVP sketch
+
+7.Recap
+
+  \bibliography{book.bib,packages.bib}
 
 \end{document}

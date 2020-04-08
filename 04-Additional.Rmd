@@ -1,8 +1,154 @@
 
-# Additional Resources
+# Create With Code
+
 
 Create with Code
 
 https://learn.unity.com/course/create-with-code
 
+## Unit 1 - Player Control
 
+### Lesson 1.1 - Start your 3D Engines
+
+1.Introduction
+
+2.Make a course folder and new project
+
+3.Import assets and open Prototype 1
+
+4.Add your vehicle to the scene
+
+5.Add an obstacle and reposition it
+
+6.Locate your camera and run the game
+
+7.Move the camera behind the vehicle
+
+8.Customize the interface layout
+
+9.Lesson Recap
+
+### Lesson 1.2 - Pedal to the Metal
+
+1.Introduction
+
+2.Create and apply your first script
+
+3.Add a comment in the Update() method
+
+ - comments
+ - methods
+ - start method
+ - update method
+ 
+4.Give the vehicle a forward motion
+
+ - transform.Translate(0,0,1);
+ 
+5.Use a Vector3 to move forward
+
+ - transform.Translate(Vector3.forward);
+  
+  6.Customize the vehicle’s speed
+  
+ - Time.deltaTime
+ 
+7.Add RigidBody components to objects
+
+Rigidbody
+
+8.Duplicate and position the obstacles
+
+### Lesson 1.3 - High Speed Chase  
+
+
+1. Introduction  
+
+
+2. Add a speed variable for your vehicle
+
+- variable  
+ public float speed = 5.0f;
+ 
+3.Create a new script for the camera
+
+4.Add an offset to the camera position
+
+5.Make the offset into a Vector3 variable
+
+6.Edit the playmode tint color
+
+- Playmode Tint
+
+7. Lesson Recap
+
+
+### Lesson 1.4 - Step into the Driver's Seat
+
+1.Introduction
+
+2.Allow the vehicle to move left/right
+
+3.Base left/right movement on input
+
+4.Take control of the vehicle speed
+
+5.Make vehicle rotate instead of slide
+
+6.Clean your code and hierarchy
+
+7.Lesson Recap
+
+
+### Challenge 1 - Plane Programming
+
+1.Introduction to Challenges
+
+2.Challenge 1 Overview
+
+3.The plane is going backward
+
+4.The plane is going too fast
+
+5.The plane is tilting automatically
+
+6.The camera is in front of the plane
+
+7.The camera is not following the plane
+
+8.Bonus: The plane’s propeller does not spin
+
+
+
+
+
+
+
+### Lab 1 - Project Design Document
+
+
+1.Introduction
+
+2.Understand what a Personal Project is
+
+3.Review Design Doc examples
+
+4.Complete your Project Concept V1
+
+5.Complete your Project Timeline
+
+6.Complete your MVP sketch
+
+7.Recap
+
+
+
+
+
+
+
+
+
+
+ 
+ 
