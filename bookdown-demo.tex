@@ -1242,6 +1242,719 @@ Rigidbody
 
 7.Recap
 
+\hypertarget{unit-2---player-control}{%
+\section{Unit 2 - Player Control}\label{unit-2---player-control}}
+
+\hypertarget{lesson-2.1---player-positioning}{%
+\subsection{Lesson 2.1 - Player Positioning}\label{lesson-2.1---player-positioning}}
+
+\hypertarget{introduction}{%
+\subsubsection{Introduction}\label{introduction}}
+
+\hypertarget{create-a-new-project-for-prototype-2}{%
+\subsubsection{Create a new Project for Prototype 2}\label{create-a-new-project-for-prototype-2}}
+
+\begin{quote}
+The first thing we need to do is create a new project and import the Prototype 2 starter files.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Open Unity Hub and create a New project named ``Prototype 2'' in your course directory
+\item
+  Click on the link to access the Prototype 2 starter files, then import them into Unity
+\item
+  Open the Prototype 2 scene and delete the SampleScene without saving
+\item
+  In the top-right of the Unity Editor, change your Layout from Default to your custom layout
+\end{enumerate}
+
+\hypertarget{add-the-player-animals-and-food}{%
+\subsubsection{Add the Player, Animals, and Food}\label{add-the-player-animals-and-food}}
+
+\begin{quote}
+Let's get all of our objects positioned in the scene, including the player, animals, and food.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  If you want, drag a different material from Course Library \textgreater{} Materials onto the Ground object
+\item
+  Drag 1 Human, 3 Animals, and 1 Food object into the Hierarchy
+\item
+  Rename the character ``Player'', then reposition the animals and food so you can see them
+\item
+  Adjust the XYZ scale of the food so you can easily see it from above
+  \#\#\#\# Get the user's horizontal input
+\end{enumerate}
+
+\begin{quote}
+If we want to move the Player left-to-right, we need a variable tracking the user's input.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In your Assets folder, create a ``Scripts'' folder, and a ``PlayerController'' script inside
+\item
+  Attach the script to the Player and open it
+\item
+  At the top of PlayerController.cs, declare a new public float horizontalInput
+\item
+  In Update(), set horizontalInput = Input.GetAxis(``Horizontal''), then test to make sure it works in the inspector
+\end{enumerate}
+
+\begin{verbatim}
+public float horizontalInput;
+
+void Update()
+{
+  horizontalInput = Input.GetAxis("Horizontal");
+}
+\end{verbatim}
+
+\hypertarget{move-the-player-left-to-right}{%
+\subsubsection{Move the player left-to-right}\label{move-the-player-left-to-right}}
+
+\begin{quote}
+We have to actually use the horizontal input to translate the Player left and right.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Declare a new public float speed = 10.0f;
+\item
+  In Update(), Translate the player side-to-side based on horizontalInput and speed
+\end{enumerate}
+
+\begin{verbatim}
+public float horizontalInput;
+public float speed = 10.0f;
+
+void Update()
+{
+  horizontalInput = Input.GetAxis("Horizontal");
+  transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+}
+
+\end{verbatim}
+
+\hypertarget{keep-the-player-inbounds}{%
+\subsubsection{Keep the player inbounds}\label{keep-the-player-inbounds}}
+
+\begin{quote}
+We have to prevent the player from going off the side of the screen with an if-then statement.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In Update(), write an if-statement checking if the player's left X position is less than a certain value
+\item
+  In the if-statement, set the player's position to its current position, but with a fixed X location
+\end{enumerate}
+
+\begin{verbatim}
+void Update()
+{
+ if (transform.position.x < -10)
+ {
+   transform.position = new Vector3(-10, transform.position.y, transform.position.z);
+ }
+}
+\end{verbatim}
+
+\hypertarget{clean-up-your-code-and-variables}{%
+\subsubsection{Clean up your code and variables}\label{clean-up-your-code-and-variables}}
+
+\begin{quote}
+We need to make this work on the right side, too, then clean up our code.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Repeat this process for the right side of the screen
+\item
+  Declare new xRange variable, then replace the hardcoded values with them
+\item
+  Add comments to your code
+\end{enumerate}
+
+\begin{verbatim}
+public float xRange = 10;
+void Update()
+{
+ // Keep the player in bounds
+ if (transform.position.x < -xRange)
+ {
+   transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+ }
+ if (transform.position.x > xRange)
+ {
+   transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+ }
+}
+\end{verbatim}
+
+\hypertarget{lesson-recap}{%
+\subsubsection{Lesson Recap}\label{lesson-recap}}
+
+New Functionality
+
+\begin{itemize}
+\tightlist
+\item
+  The player can move left and right based on the user's left and right key presses
+\item
+  The player will not be able to leave the play area on either side
+\end{itemize}
+
+New Concepts \& Skills
+
+\begin{itemize}
+\tightlist
+\item
+  Adjust object scale
+\item
+  If-statements
+\item
+  Greater/Less than operators
+\end{itemize}
+
+\hypertarget{lesson-2.2---food-flight}{%
+\subsection{Lesson 2.2 - Food Flight}\label{lesson-2.2---food-flight}}
+
+\hypertarget{introduction-1}{%
+\subsubsection{Introduction}\label{introduction-1}}
+
+\hypertarget{make-the-projectile-fly-forwards}{%
+\subsubsection{Make the projectile fly forwards}\label{make-the-projectile-fly-forwards}}
+
+\begin{quote}
+The first thing we must do is give the projectile some forward movement so it can zip across the scene when it's launched by the player.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a new ``MoveForward'' script, attach it to the food object, then open it
+\item
+  Declare a new public float speed variable;
+\item
+  In \textbf{Update()}, add transform.Translate(Vector3.forward * Time.deltaTime * speed);, then save
+\item
+  In the \textbf{Inspector}, set the projectile's \textbf{speed} variable, then test
+\end{enumerate}
+
+\begin{verbatim}
+public float speed = 40.0f;
+
+void Update()
+{
+  transform.Translate(Vector3.forward * Time.deltaTime * speed); 
+}
+\end{verbatim}
+
+\hypertarget{make-the-projectile-into-a-prefab}{%
+\subsubsection{Make the projectile into a prefab}\label{make-the-projectile-into-a-prefab}}
+
+\begin{quote}
+Now that our projectile has the behavior we want, we need to make it into a prefab it so it can be reused anywhere and anytime, with all its behaviors included.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a new ``Prefabs'' folder, drag your food into it, and choose \textbf{Original Prefab}
+\item
+  In PlayerController.cs, declare a new public GameObject projectilePrefab; variable
+\item
+  Select the Player in the hierarchy, then drag the object from your Prefabs folder onto the new Projectile Prefab box in the inspector
+\item
+  Try dragging the projectile into the scene at runtime to make sure they fly
+\end{enumerate}
+
+\hypertarget{test-for-spacebar-press}{%
+\subsubsection{Test for spacebar press}\label{test-for-spacebar-press}}
+
+\begin{quote}
+Now that we have a projectile prefab assigned to PlayerController.cs, the player needs a way to launch it with the space bar.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In PlayerController.cs, in Update(), add an if-statement checking for a spacebar press:
+  if (Input.GetKeyDown(KeyCode.Space)) \{
+\item
+  Inside the if-statement, add a comment saying that you should // Launch a projectile from the player
+\end{enumerate}
+
+\hypertarget{launch-projectile-on-spacebar-press}{%
+\subsubsection{Launch projectile on spacebar press}\label{launch-projectile-on-spacebar-press}}
+
+\begin{quote}
+We've created the code that tests if the player presses spacebar, but now we actually need spawn a projectile when that happens
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Inside the if-statement, use the Instantiate method to spawn a projectile at the player's location with the prefab's rotation
+\end{enumerate}
+
+\begin{verbatim}
+
+if (Input.GetKeyDown(KeyCode.Space))
+{
+  Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); 
+}
+\end{verbatim}
+
+\hypertarget{make-animals-into-prefabs}{%
+\subsubsection{Make animals into prefabs}\label{make-animals-into-prefabs}}
+
+\begin{quote}
+The projectile is now a prefab, but what about the animals? They need to be prefabs too, so they can be instantiated during the game.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Rotate all animals on the Y axis by 180 degrees to face down
+\item
+  Select all three animals in the hierarchy and Add Component \textgreater{} Move Forward
+\item
+  Edit their speed values and test to see how it looks
+\item
+  Drag all three animals into the Prefabs folder, choosing ``Original Prefab''
+\item
+  Test by dragging prefabs into scene view during gameplay
+\end{enumerate}
+
+\hypertarget{destroy-projectiles-offscreen}{%
+\subsubsection{Destroy projectiles offscreen}\label{destroy-projectiles-offscreen}}
+
+\begin{quote}
+Whenever we spawn a projectile, it drifts past the play area into eternity. In order to improve game performance, we need to destroy them when they go out of bounds.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create ``DestroyOutOfBounds'' script and apply it to the projectile
+\item
+  Add a new private float topBound variable and initialize it = 30;
+\item
+  Write code to destroy if out of top bounds if (transform.position.z \textgreater{} topBound) \{
+  Destroy(gameObject); \}
+\item
+  In the Inspector Overrides drop-down, click Apply all to apply it to prefab
+\end{enumerate}
+
+\begin{verbatim}
+private float topBound = 30.0f;
+
+void Update() {
+  if(transform.position.z > topBound) {
+    Destroy(gameObject);
+  }
+}
+\end{verbatim}
+
+\hypertarget{destroy-animals-offscreen}{%
+\subsubsection{Destroy animals offscreen}\label{destroy-animals-offscreen}}
+
+\begin{quote}
+If we destroy projectiles that go out of bounds, we should probably do the same for animals. We don't want critters getting lost in the endless abyss of Unity Editor\ldots{}
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create else-if statement to check if objects are beneath lowerBound:
+  else if (transform.position.z \textgreater{} topBound)
+\item
+  Apply the script to all of the animals, then Override the prefabs
+\end{enumerate}
+
+\begin{verbatim}
+private float topBound = 30.0f;
+private float lowerBound = -10.0f;
+
+void Update() {
+  if(transform.position.z > topBound) {
+    Destroy(gameObject);
+  }  else if(transform.position.z < lowerBound) {
+    Destroy(gameObject);
+  }
+}
+\end{verbatim}
+
+\hypertarget{lesson-recap-1}{%
+\subsubsection{Lesson Recap}\label{lesson-recap-1}}
+
+New Functionality
+
+\begin{itemize}
+\tightlist
+\item
+  The player can press the Spacebar to launch a projectile prefab,
+\item
+  Projectile and Animals are removed from the scene if they leave the screen
+\end{itemize}
+
+New Concepts \& Skills
+
+\begin{itemize}
+\tightlist
+\item
+  Create Prefabs
+\item
+  Override Prefabs
+\item
+  Test for Key presses
+\item
+  Instantiate objects
+\item
+  Destroy objects
+\item
+  Else-if statements
+\end{itemize}
+
+\hypertarget{lesson-2.3---random-animal-stampede}{%
+\subsection{Lesson 2.3 - Random Animal Stampede}\label{lesson-2.3---random-animal-stampede}}
+
+\hypertarget{introduction-2}{%
+\subsubsection{Introduction}\label{introduction-2}}
+
+\hypertarget{create-a-spawn-manager}{%
+\subsubsection{Create a spawn manager}\label{create-a-spawn-manager}}
+
+\begin{quote}
+If we are going to be doing all of this complex spawning of objects, we should have a dedicated script to manage the process, as well as an object to attach it to.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In the hierarchy, create an empty object called ``SpawnManager''
+\item
+  Create a new script called ``SpawnManager'', attach it to the Spawn Manager, and open it
+\item
+  Declare new public GameObject\protect\hyperlink{section}{} animalPrefabs;
+\item
+  In the inspector, change the Array size to match your animal count, then assign your animals by dragging them in
+\end{enumerate}
+
+\hypertarget{spawn-an-animal-if-s-is-pressed}{%
+\subsubsection{Spawn an animal if S is pressed}\label{spawn-an-animal-if-s-is-pressed}}
+
+\begin{quote}
+We've created an array and assigned our animals to it, but that doesn't do much good until we have a way to spawn them during the game. Let's create a temporary solution for choosing and spawning the animals.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In Update(), write an if-then statement to instantiate a new animal prefab at the top of the screen if S is pressed
+\item
+  Declare a new public int animalIndex and incorporate it in the Instantiate call, then test editing the value in the Inspector
+\end{enumerate}
+
+\begin{verbatim}
+public GameObject[] animalPrefabs;
+public int animalIndex;
+
+void Update() {
+  if(Input.GetKeyDown(KeyCode.S)) {
+    Instantiate(animalPrefabs[animalIndex], new Vector3(0,0,20), animalPrefabs[animalIndex].transform.rotation);
+  }
+}
+\end{verbatim}
+
+\hypertarget{spawn-random-animals-from-array}{%
+\subsubsection{Spawn random animals from array}\label{spawn-random-animals-from-array}}
+
+\begin{quote}
+We can spawn animals by pressing S, but doing so only spawns an animal at the array index we specify. We need to randomize the selection so that S can spawn a random animal based on the index, without our specification.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In the if-statement checking if S is pressed, generate a random int animalIndex between 0 and the length of the array
+\item
+  Remove the global animalIndex variable, since it is only needed locally in the if-statement
+\end{enumerate}
+
+\begin{verbatim}
+public GameObject[] animalPrefabs;
+
+
+void Update() {
+  if(Input.GetKeyDown(KeyCode.S)) {
+    int animalIndex = Random.Range(0, animalPrefabs.Length);
+    Instantiate(animalPrefabs[animalIndex], new Vector3(0,0,20), animalPrefabs[animalIndex].transform.rotation);
+  }
+}
+\end{verbatim}
+
+\hypertarget{randomize-the-spawn-location}{%
+\subsubsection{Randomize the spawn location}\label{randomize-the-spawn-location}}
+
+\begin{quote}
+We can press S to spawn random animals from animalIndex, but they all pop up in the same place! We need to randomize their spawn position, so they don't march down the screen in a straight line.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Replace the X value for the Vector3 with Random.Range(-20, 20), then test
+\item
+  Within the if-statement, make a new local Vector3 spawnPos variable
+\item
+  At the top of the class, create private float variables for spawnRangeX and spawnPosZ
+\end{enumerate}
+
+\begin{verbatim}
+public GameObject[] animalPrefabs;
+private float spawnRangeX = 10;
+private float spawnPosZ = 20;
+
+
+void Update() {
+  if(Input.GetKeyDown(KeyCode.S)) {
+    int animalIndex = Random.Range(0, animalPrefabs.Length);
+    Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX,spawnRangeX), 0, spawnPosZ);
+    Instantiate(animalPrefabs[animalIndex], spawnPos, animalPrefabs[animalIndex].transform.rotation);
+  }
+}
+\end{verbatim}
+
+\hypertarget{change-the-perspective-of-the-camera}{%
+\subsubsection{Change the perspective of the camera}\label{change-the-perspective-of-the-camera}}
+
+\begin{quote}
+Our Spawn Manager is coming along nicely, so let's take a break and mess with the camera.Changing the camera's perspective might offer a more appropriate view for this top-down game.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Toggle between Perspective and Isometric view in Scene view to appreciate the difference
+\item
+  Select the camera and change the Projection from ``Perspective'' to ``Orthographic''
+\end{enumerate}
+
+\hypertarget{lesson-recap-2}{%
+\subsubsection{Lesson Recap}\label{lesson-recap-2}}
+
+New Functionality
+
+\begin{itemize}
+\tightlist
+\item
+  The player can press the S to spawn an animal
+\item
+  Animal selection and spawn location are randomized
+\item
+  Camera projection (perspective/orthographic) selected
+\end{itemize}
+
+New Concepts \& Skills
+
+\begin{itemize}
+\tightlist
+\item
+  Spawn Manager
+\item
+  Arrays
+\item
+  Keycodes
+\item
+  Random generation
+\item
+  Local vs Global variables
+\item
+  Perspective vs Isometric projections
+\end{itemize}
+
+\hypertarget{lesson-2.4---collision-decisions}{%
+\subsection{Lesson 2.4 - Collision Decisions}\label{lesson-2.4---collision-decisions}}
+
+\hypertarget{introduction-3}{%
+\subsubsection{Introduction}\label{introduction-3}}
+
+\hypertarget{make-a-new-method-to-spawn-animals}{%
+\subsubsection{Make a new method to spawn animals}\label{make-a-new-method-to-spawn-animals}}
+
+\begin{quote}
+Our Spawn Manager is looking good, but we're still pressing S to make it work! If we want the game to spawn animals automatically, we need to start by writing our very first custom function.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In SpawnManager.cs, create a new void SpawnRandomAnimal() \{\} function beneath Update()
+\item
+  Cut and paste the code from the if-then statement to the new function
+\item
+  Call SpawnRandomAnimal(); if S is pressed
+\end{enumerate}
+
+\hypertarget{spawn-the-animals-at-timed-intervals}{%
+\subsubsection{Spawn the animals at timed intervals}\label{spawn-the-animals-at-timed-intervals}}
+
+\begin{quote}
+We've stored the spawn code in a custom function, but we're still pressing S! We need to spawn the animals on a timer, so they randomly appear every few seconds.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In Start(), use InvokeRepeating to spawn the animals based on an interval, then test.
+\item
+  Remove the if-then statement that tests for S being pressed
+\item
+  Declare new private startDelay and spawnInterval variables then playtest and tweak variable values
+\end{enumerate}
+
+\begin{verbatim}
+private float startDelay = 2;
+private float spawnInterval = 1.5f;
+
+void Start(){
+  InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval);
+}
+\end{verbatim}
+
+\hypertarget{add-collider-and-trigger-components}{%
+\subsubsection{Add collider and trigger components}\label{add-collider-and-trigger-components}}
+
+\begin{quote}
+Animals spawn perfectly and the player can fire projectiles at them, but nothing happens when the two collide! If we want the projectiles and animals to be destroyed on collision, we need to give them some familiar components - ``colliders.''
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Double-click on one of the animal prefabs, then Add Component \textgreater{} Box Collider
+\item
+  Click Edit Collider, then drag the collider handles to encompass the object
+\item
+  Check the ``Is Trigger'' checkbox
+\item
+  Repeat this process for each of the animals and the projectile
+\item
+  Add a RigidBody component to the projectile and uncheck ``use gravity''
+\end{enumerate}
+
+\hypertarget{destroy-objects-on-collision}{%
+\subsubsection{Destroy objects on collision}\label{destroy-objects-on-collision}}
+
+\begin{quote}
+Now that the animals and the projectile have Box Colliders with triggers, we need to code a new script in order to destroy them on impact.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a new DetectCollisions.cs script, add it to each animal prefab, then open it
+\item
+  Before the final \} add OnTriggerEnter function using autocomplete
+\item
+  In OnTriggerEnter, put Destroy(gameObject);, then test
+\item
+  In OnTriggerEnter, put Destroy(other.gameObject);
+\end{enumerate}
+
+\begin{verbatim}
+
+
+void onTriggerEnter(Collider other){
+  Destroy(gameObject);
+  Destroy(other.gameObject);
+}
+\end{verbatim}
+
+\hypertarget{trigger-a-game-over-message}{%
+\subsubsection{Trigger a ``Game Over'' message}\label{trigger-a-game-over-message}}
+
+\begin{quote}
+The player can defend their field against animals for as long as they wish, but we should let them know when they've lost with a ``Game Over'' message if any animals get past the player.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In DestroyOutOfBounds.cs, in the else-if condition that checks if the animals reach the bottom of the screen, add a Game Over messsage:
+  Debug.Log(``Game Over!'')
+\item
+  Clean up your code with comments
+\item
+  If using Visual Studio, Click Edit \textgreater{} Advanced \textgreater{} Format document to fix any indentation issues
+  (On a Mac, click Edit \textgreater{} Format \textgreater{} Format Document)
+\end{enumerate}
+
+\hypertarget{lesson-recap-3}{%
+\subsubsection{Lesson Recap}\label{lesson-recap-3}}
+
+New Functionality
+
+\begin{itemize}
+\tightlist
+\item
+  Animals spawn on a timed interval and walk down the screen
+\item
+  When animals get past the player, it triggers a ``Game Over'' message
+\item
+  If a projectile collides with an animal, both objects are removed
+\end{itemize}
+
+New Concepts \& Skills
+
+\begin{itemize}
+\tightlist
+\item
+  Create custom methods/functions
+\item
+  InvokeRepeating() to repeat code
+\item
+  Colliders and Triggers
+\item
+  Override functions
+\item
+  Log Debug messages to console
+\end{itemize}
+
   \bibliography{book.bib,packages.bib}
 
 \end{document}

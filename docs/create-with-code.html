@@ -173,6 +173,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.5" data-path="create-with-code.html"><a href="create-with-code.html#challenge-1---plane-programming"><i class="fa fa-check"></i><b>5.1.5</b> Challenge 1 - Plane Programming</a></li>
 <li class="chapter" data-level="5.1.6" data-path="create-with-code.html"><a href="create-with-code.html#lab-1---project-design-document"><i class="fa fa-check"></i><b>5.1.6</b> Lab 1 - Project Design Document</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="create-with-code.html"><a href="create-with-code.html#unit-2---player-control"><i class="fa fa-check"></i><b>5.2</b> Unit 2 - Player Control</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="create-with-code.html"><a href="create-with-code.html#lesson-2.1---player-positioning"><i class="fa fa-check"></i><b>5.2.1</b> Lesson 2.1 - Player Positioning</a></li>
+<li class="chapter" data-level="5.2.2" data-path="create-with-code.html"><a href="create-with-code.html#lesson-2.2---food-flight"><i class="fa fa-check"></i><b>5.2.2</b> Lesson 2.2 - Food Flight</a></li>
+<li class="chapter" data-level="5.2.3" data-path="create-with-code.html"><a href="create-with-code.html#lesson-2.3---random-animal-stampede"><i class="fa fa-check"></i><b>5.2.3</b> Lesson 2.3 - Random Animal Stampede</a></li>
+<li class="chapter" data-level="5.2.4" data-path="create-with-code.html"><a href="create-with-code.html#lesson-2.4---collision-decisions"><i class="fa fa-check"></i><b>5.2.4</b> Lesson 2.4 - Collision Decisions</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -290,7 +296,466 @@ public float speed = 5.0f;</li>
 <p>5.Complete your Project Timeline</p>
 <p>6.Complete your MVP sketch</p>
 <p>7.Recap</p>
+</div>
+</div>
+<div id="unit-2---player-control" class="section level2">
+<h2><span class="header-section-number">5.2</span> Unit 2 - Player Control</h2>
+<div id="lesson-2.1---player-positioning" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Lesson 2.1 - Player Positioning</h3>
+<div id="introduction" class="section level4">
+<h4><span class="header-section-number">5.2.1.1</span> Introduction</h4>
+</div>
+<div id="create-a-new-project-for-prototype-2" class="section level4">
+<h4><span class="header-section-number">5.2.1.2</span> Create a new Project for Prototype 2</h4>
+<blockquote>
+<p>The first thing we need to do is create a new project and import the Prototype 2 starter files.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Open Unity Hub and create a New project named “Prototype 2” in your course directory</li>
+<li>Click on the link to access the Prototype 2 starter files, then import them into Unity</li>
+<li>Open the Prototype 2 scene and delete the SampleScene without saving</li>
+<li>In the top-right of the Unity Editor, change your Layout from Default to your custom layout</li>
+</ol>
+</div>
+<div id="add-the-player-animals-and-food" class="section level4">
+<h4><span class="header-section-number">5.2.1.3</span> Add the Player, Animals, and Food</h4>
+<blockquote>
+<p>Let’s get all of our objects positioned in the scene, including the player, animals, and food.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>If you want, drag a different material from Course Library &gt; Materials onto the Ground object</li>
+<li>Drag 1 Human, 3 Animals, and 1 Food object into the Hierarchy</li>
+<li>Rename the character “Player”, then reposition the animals and food so you can see them</li>
+<li>Adjust the XYZ scale of the food so you can easily see it from above
+#### Get the user’s horizontal input</li>
+</ol>
+<blockquote>
+<p>If we want to move the Player left-to-right, we need a variable tracking the user’s input.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In your Assets folder, create a “Scripts” folder, and a “PlayerController” script inside</li>
+<li>Attach the script to the Player and open it</li>
+<li>At the top of PlayerController.cs, declare a new public float horizontalInput</li>
+<li>In Update(), set horizontalInput = Input.GetAxis(“Horizontal”), then test to make sure it works in the inspector</li>
+</ol>
+<pre class="{c#}"><code>public float horizontalInput;
 
+void Update()
+{
+  horizontalInput = Input.GetAxis(&quot;Horizontal&quot;);
+}</code></pre>
+</div>
+<div id="move-the-player-left-to-right" class="section level4">
+<h4><span class="header-section-number">5.2.1.4</span> Move the player left-to-right</h4>
+<blockquote>
+<p>We have to actually use the horizontal input to translate the Player left and right.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Declare a new public float speed = 10.0f;</li>
+<li>In Update(), Translate the player side-to-side based on horizontalInput and speed</li>
+</ol>
+<pre class="{c#}"><code>public float horizontalInput;
+public float speed = 10.0f;
+
+void Update()
+{
+  horizontalInput = Input.GetAxis(&quot;Horizontal&quot;);
+  transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+}
+
+</code></pre>
+</div>
+<div id="keep-the-player-inbounds" class="section level4">
+<h4><span class="header-section-number">5.2.1.5</span> Keep the player inbounds</h4>
+<blockquote>
+<p>We have to prevent the player from going off the side of the screen with an if-then statement.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In Update(), write an if-statement checking if the player’s left X position is less than a certain value</li>
+<li>In the if-statement, set the player’s position to its current position, but with a fixed X location</li>
+</ol>
+<pre class="{c#}"><code>void Update()
+{
+ if (transform.position.x &lt; -10)
+ {
+   transform.position = new Vector3(-10, transform.position.y, transform.position.z);
+ }
+}
+</code></pre>
+</div>
+<div id="clean-up-your-code-and-variables" class="section level4">
+<h4><span class="header-section-number">5.2.1.6</span> Clean up your code and variables</h4>
+<blockquote>
+<p>We need to make this work on the right side, too, then clean up our code.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Repeat this process for the right side of the screen</li>
+<li>Declare new xRange variable, then replace the hardcoded values with them</li>
+<li>Add comments to your code</li>
+</ol>
+<pre class="{c#}"><code>public float xRange = 10;
+void Update()
+{
+ // Keep the player in bounds
+ if (transform.position.x &lt; -xRange)
+ {
+   transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+ }
+ if (transform.position.x &gt; xRange)
+ {
+   transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+ }
+}
+</code></pre>
+</div>
+<div id="lesson-recap" class="section level4">
+<h4><span class="header-section-number">5.2.1.7</span> Lesson Recap</h4>
+<p>New Functionality</p>
+<ul>
+<li>The player can move left and right based on the user’s left and right key presses</li>
+<li>The player will not be able to leave the play area on either side</li>
+</ul>
+<p>New Concepts &amp; Skills</p>
+<ul>
+<li>Adjust object scale</li>
+<li>If-statements</li>
+<li>Greater/Less than operators</li>
+</ul>
+</div>
+</div>
+<div id="lesson-2.2---food-flight" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Lesson 2.2 - Food Flight</h3>
+<div id="introduction-1" class="section level4">
+<h4><span class="header-section-number">5.2.2.1</span> Introduction</h4>
+</div>
+<div id="make-the-projectile-fly-forwards" class="section level4">
+<h4><span class="header-section-number">5.2.2.2</span> Make the projectile fly forwards</h4>
+<blockquote>
+<p>The first thing we must do is give the projectile some forward movement so it can zip across the scene when it’s launched by the player.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Create a new “MoveForward” script, attach it to the food object, then open it</li>
+<li>Declare a new public float speed variable;</li>
+<li>In <strong>Update()</strong>, add transform.Translate(Vector3.forward * Time.deltaTime * speed);, then save</li>
+<li>In the <strong>Inspector</strong>, set the projectile’s <strong>speed</strong> variable, then test</li>
+</ol>
+<pre class="{c#}"><code>public float speed = 40.0f;
+
+void Update()
+{
+  transform.Translate(Vector3.forward * Time.deltaTime * speed); 
+}</code></pre>
+</div>
+<div id="make-the-projectile-into-a-prefab" class="section level4">
+<h4><span class="header-section-number">5.2.2.3</span> Make the projectile into a prefab</h4>
+<blockquote>
+<p>Now that our projectile has the behavior we want, we need to make it into a prefab it so it can be reused anywhere and anytime, with all its behaviors included.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Create a new “Prefabs” folder, drag your food into it, and choose <strong>Original Prefab</strong></li>
+<li>In PlayerController.cs, declare a new public GameObject projectilePrefab; variable</li>
+<li>Select the Player in the hierarchy, then drag the object from your Prefabs folder onto the new Projectile Prefab box in the inspector</li>
+<li>Try dragging the projectile into the scene at runtime to make sure they fly</li>
+</ol>
+</div>
+<div id="test-for-spacebar-press" class="section level4">
+<h4><span class="header-section-number">5.2.2.4</span> Test for spacebar press</h4>
+<blockquote>
+<p>Now that we have a projectile prefab assigned to PlayerController.cs, the player needs a way to launch it with the space bar.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In PlayerController.cs, in Update(), add an if-statement checking for a spacebar press:
+if (Input.GetKeyDown(KeyCode.Space)) {</li>
+<li>Inside the if-statement, add a comment saying that you should // Launch a projectile from the player</li>
+</ol>
+</div>
+<div id="launch-projectile-on-spacebar-press" class="section level4">
+<h4><span class="header-section-number">5.2.2.5</span> Launch projectile on spacebar press</h4>
+<blockquote>
+<p>We’ve created the code that tests if the player presses spacebar, but now we actually need spawn a projectile when that happens</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Inside the if-statement, use the Instantiate method to spawn a projectile at the player’s location with the prefab’s rotation</li>
+</ol>
+<pre class="{c#}"><code>
+if (Input.GetKeyDown(KeyCode.Space))
+{
+  Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); 
+}</code></pre>
+</div>
+<div id="make-animals-into-prefabs" class="section level4">
+<h4><span class="header-section-number">5.2.2.6</span> Make animals into prefabs</h4>
+<blockquote>
+<p>The projectile is now a prefab, but what about the animals? They need to be prefabs too, so they can be instantiated during the game.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Rotate all animals on the Y axis by 180 degrees to face down</li>
+<li>Select all three animals in the hierarchy and Add Component &gt; Move Forward</li>
+<li>Edit their speed values and test to see how it looks</li>
+<li>Drag all three animals into the Prefabs folder, choosing “Original Prefab”</li>
+<li>Test by dragging prefabs into scene view during gameplay</li>
+</ol>
+</div>
+<div id="destroy-projectiles-offscreen" class="section level4">
+<h4><span class="header-section-number">5.2.2.7</span> Destroy projectiles offscreen</h4>
+<blockquote>
+<p>Whenever we spawn a projectile, it drifts past the play area into eternity. In order to improve game performance, we need to destroy them when they go out of bounds.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Create “DestroyOutOfBounds” script and apply it to the projectile</li>
+<li>Add a new private float topBound variable and initialize it = 30;</li>
+<li>Write code to destroy if out of top bounds if (transform.position.z &gt; topBound) {
+Destroy(gameObject); }</li>
+<li>In the Inspector Overrides drop-down, click Apply all to apply it to prefab</li>
+</ol>
+<pre class="{c#}"><code>private float topBound = 30.0f;
+
+void Update() {
+  if(transform.position.z &gt; topBound) {
+    Destroy(gameObject);
+  }
+}</code></pre>
+</div>
+<div id="destroy-animals-offscreen" class="section level4">
+<h4><span class="header-section-number">5.2.2.8</span> Destroy animals offscreen</h4>
+<blockquote>
+<p>If we destroy projectiles that go out of bounds, we should probably do the same for animals. We don’t want critters getting lost in the endless abyss of Unity Editor…</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Create else-if statement to check if objects are beneath lowerBound:
+else if (transform.position.z &gt; topBound)</li>
+<li>Apply the script to all of the animals, then Override the prefabs</li>
+</ol>
+<pre class="{c#}"><code>private float topBound = 30.0f;
+private float lowerBound = -10.0f;
+
+void Update() {
+  if(transform.position.z &gt; topBound) {
+    Destroy(gameObject);
+  }  else if(transform.position.z &lt; lowerBound) {
+    Destroy(gameObject);
+  }
+}</code></pre>
+</div>
+<div id="lesson-recap-1" class="section level4">
+<h4><span class="header-section-number">5.2.2.9</span> Lesson Recap</h4>
+<p>New Functionality</p>
+<ul>
+<li>The player can press the Spacebar to launch a projectile prefab,</li>
+<li>Projectile and Animals are removed from the scene if they leave the screen</li>
+</ul>
+<p>New Concepts &amp; Skills</p>
+<ul>
+<li>Create Prefabs</li>
+<li>Override Prefabs</li>
+<li>Test for Key presses</li>
+<li>Instantiate objects</li>
+<li>Destroy objects</li>
+<li>Else-if statements</li>
+</ul>
+</div>
+</div>
+<div id="lesson-2.3---random-animal-stampede" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Lesson 2.3 - Random Animal Stampede</h3>
+<div id="introduction-2" class="section level4">
+<h4><span class="header-section-number">5.2.3.1</span> Introduction</h4>
+</div>
+<div id="create-a-spawn-manager" class="section level4">
+<h4><span class="header-section-number">5.2.3.2</span> Create a spawn manager</h4>
+<blockquote>
+<p>If we are going to be doing all of this complex spawning of objects, we should have a dedicated script to manage the process, as well as an object to attach it to.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In the hierarchy, create an empty object called “SpawnManager”</li>
+<li>Create a new script called “SpawnManager”, attach it to the Spawn Manager, and open it</li>
+<li>Declare new public GameObject<a href="pong.html#section"></a> animalPrefabs;</li>
+<li>In the inspector, change the Array size to match your animal count, then assign your animals by dragging them in</li>
+</ol>
+</div>
+<div id="spawn-an-animal-if-s-is-pressed" class="section level4">
+<h4><span class="header-section-number">5.2.3.3</span> Spawn an animal if S is pressed</h4>
+<blockquote>
+<p>We’ve created an array and assigned our animals to it, but that doesn’t do much good until we have a way to spawn them during the game. Let’s create a temporary solution for choosing and spawning the animals.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In Update(), write an if-then statement to instantiate a new animal prefab at the top of the screen if S is pressed</li>
+<li>Declare a new public int animalIndex and incorporate it in the Instantiate call, then test editing the value in the Inspector</li>
+</ol>
+<pre class="{c#}"><code>public GameObject[] animalPrefabs;
+public int animalIndex;
+
+void Update() {
+  if(Input.GetKeyDown(KeyCode.S)) {
+    Instantiate(animalPrefabs[animalIndex], new Vector3(0,0,20), animalPrefabs[animalIndex].transform.rotation);
+  }
+}</code></pre>
+</div>
+<div id="spawn-random-animals-from-array" class="section level4">
+<h4><span class="header-section-number">5.2.3.4</span> Spawn random animals from array</h4>
+<blockquote>
+<p>We can spawn animals by pressing S, but doing so only spawns an animal at the array index we specify. We need to randomize the selection so that S can spawn a random animal based on the index, without our specification.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In the if-statement checking if S is pressed, generate a random int animalIndex between 0 and the length of the array</li>
+<li>Remove the global animalIndex variable, since it is only needed locally in the if-statement</li>
+</ol>
+<pre class="{c#}"><code>public GameObject[] animalPrefabs;
+
+
+void Update() {
+  if(Input.GetKeyDown(KeyCode.S)) {
+    int animalIndex = Random.Range(0, animalPrefabs.Length);
+    Instantiate(animalPrefabs[animalIndex], new Vector3(0,0,20), animalPrefabs[animalIndex].transform.rotation);
+  }
+}</code></pre>
+</div>
+<div id="randomize-the-spawn-location" class="section level4">
+<h4><span class="header-section-number">5.2.3.5</span> Randomize the spawn location</h4>
+<blockquote>
+<p>We can press S to spawn random animals from animalIndex, but they all pop up in the same place! We need to randomize their spawn position, so they don’t march down the screen in a straight line.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Replace the X value for the Vector3 with Random.Range(-20, 20), then test</li>
+<li>Within the if-statement, make a new local Vector3 spawnPos variable</li>
+<li>At the top of the class, create private float variables for spawnRangeX and spawnPosZ</li>
+</ol>
+<pre class="{c#}"><code>public GameObject[] animalPrefabs;
+private float spawnRangeX = 10;
+private float spawnPosZ = 20;
+
+
+void Update() {
+  if(Input.GetKeyDown(KeyCode.S)) {
+    int animalIndex = Random.Range(0, animalPrefabs.Length);
+    Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX,spawnRangeX), 0, spawnPosZ);
+    Instantiate(animalPrefabs[animalIndex], spawnPos, animalPrefabs[animalIndex].transform.rotation);
+  }
+}</code></pre>
+</div>
+<div id="change-the-perspective-of-the-camera" class="section level4">
+<h4><span class="header-section-number">5.2.3.6</span> Change the perspective of the camera</h4>
+<blockquote>
+<p>Our Spawn Manager is coming along nicely, so let’s take a break and mess with the camera.Changing the camera’s perspective might offer a more appropriate view for this top-down game.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Toggle between Perspective and Isometric view in Scene view to appreciate the difference</li>
+<li>Select the camera and change the Projection from “Perspective” to “Orthographic”</li>
+</ol>
+</div>
+<div id="lesson-recap-2" class="section level4">
+<h4><span class="header-section-number">5.2.3.7</span> Lesson Recap</h4>
+<p>New Functionality</p>
+<ul>
+<li>The player can press the S to spawn an animal</li>
+<li>Animal selection and spawn location are randomized</li>
+<li>Camera projection (perspective/orthographic) selected</li>
+</ul>
+<p>New Concepts &amp; Skills</p>
+<ul>
+<li>Spawn Manager</li>
+<li>Arrays</li>
+<li>Keycodes</li>
+<li>Random generation</li>
+<li>Local vs Global variables</li>
+<li>Perspective vs Isometric projections</li>
+</ul>
+</div>
+</div>
+<div id="lesson-2.4---collision-decisions" class="section level3">
+<h3><span class="header-section-number">5.2.4</span> Lesson 2.4 - Collision Decisions</h3>
+<div id="introduction-3" class="section level4">
+<h4><span class="header-section-number">5.2.4.1</span> Introduction</h4>
+</div>
+<div id="make-a-new-method-to-spawn-animals" class="section level4">
+<h4><span class="header-section-number">5.2.4.2</span> Make a new method to spawn animals</h4>
+<blockquote>
+<p>Our Spawn Manager is looking good, but we’re still pressing S to make it work! If we want the game to spawn animals automatically, we need to start by writing our very first custom function.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In SpawnManager.cs, create a new void SpawnRandomAnimal() {} function beneath Update()</li>
+<li>Cut and paste the code from the if-then statement to the new function</li>
+<li>Call SpawnRandomAnimal(); if S is pressed</li>
+</ol>
+</div>
+<div id="spawn-the-animals-at-timed-intervals" class="section level4">
+<h4><span class="header-section-number">5.2.4.3</span> Spawn the animals at timed intervals</h4>
+<blockquote>
+<p>We’ve stored the spawn code in a custom function, but we’re still pressing S! We need to spawn the animals on a timer, so they randomly appear every few seconds.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In Start(), use InvokeRepeating to spawn the animals based on an interval, then test.</li>
+<li>Remove the if-then statement that tests for S being pressed</li>
+<li>Declare new private startDelay and spawnInterval variables then playtest and tweak variable values</li>
+</ol>
+<pre class="{c#}"><code>private float startDelay = 2;
+private float spawnInterval = 1.5f;
+
+void Start(){
+  InvokeRepeating(&quot;SpawnRandomAnimal&quot;, startDelay, spawnInterval);
+}</code></pre>
+</div>
+<div id="add-collider-and-trigger-components" class="section level4">
+<h4><span class="header-section-number">5.2.4.4</span> Add collider and trigger components</h4>
+<blockquote>
+<p>Animals spawn perfectly and the player can fire projectiles at them, but nothing happens when the two collide! If we want the projectiles and animals to be destroyed on collision, we need to give them some familiar components - “colliders.”</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Double-click on one of the animal prefabs, then Add Component &gt; Box Collider</li>
+<li>Click Edit Collider, then drag the collider handles to encompass the object</li>
+<li>Check the “Is Trigger” checkbox</li>
+<li>Repeat this process for each of the animals and the projectile</li>
+<li>Add a RigidBody component to the projectile and uncheck “use gravity”</li>
+</ol>
+</div>
+<div id="destroy-objects-on-collision" class="section level4">
+<h4><span class="header-section-number">5.2.4.5</span> Destroy objects on collision</h4>
+<blockquote>
+<p>Now that the animals and the projectile have Box Colliders with triggers, we need to code a new script in order to destroy them on impact.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>Create a new DetectCollisions.cs script, add it to each animal prefab, then open it</li>
+<li>Before the final } add OnTriggerEnter function using autocomplete</li>
+<li>In OnTriggerEnter, put Destroy(gameObject);, then test</li>
+<li>In OnTriggerEnter, put Destroy(other.gameObject);</li>
+</ol>
+<pre class="{c#}"><code>
+
+void onTriggerEnter(Collider other){
+  Destroy(gameObject);
+  Destroy(other.gameObject);
+}</code></pre>
+</div>
+<div id="trigger-a-game-over-message" class="section level4">
+<h4><span class="header-section-number">5.2.4.6</span> Trigger a “Game Over” message</h4>
+<blockquote>
+<p>The player can defend their field against animals for as long as they wish, but we should let them know when they’ve lost with a “Game Over” message if any animals get past the player.</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>In DestroyOutOfBounds.cs, in the else-if condition that checks if the animals reach the bottom of the screen, add a Game Over messsage:
+Debug.Log(“Game Over!”)</li>
+<li>Clean up your code with comments</li>
+<li>If using Visual Studio, Click Edit &gt; Advanced &gt; Format document to fix any indentation issues
+(On a Mac, click Edit &gt; Format &gt; Format Document)</li>
+</ol>
+</div>
+<div id="lesson-recap-3" class="section level4">
+<h4><span class="header-section-number">5.2.4.7</span> Lesson Recap</h4>
+<p>New Functionality</p>
+<ul>
+<li>Animals spawn on a timed interval and walk down the screen</li>
+<li>When animals get past the player, it triggers a “Game Over” message</li>
+<li>If a projectile collides with an animal, both objects are removed</li>
+</ul>
+<p>New Concepts &amp; Skills</p>
+<ul>
+<li>Create custom methods/functions</li>
+<li>InvokeRepeating() to repeat code</li>
+<li>Colliders and Triggers</li>
+<li>Override functions</li>
+<li>Log Debug messages to console</li>
+</ul>
+
+</div>
 </div>
 </div>
 </div>

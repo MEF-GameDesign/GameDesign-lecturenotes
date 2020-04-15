@@ -142,13 +142,423 @@ Rigidbody
 7.Recap
 
 
+## Unit 2 - Player Control
+
+### Lesson 2.1 - Player Positioning
+
+
+#### Introduction
+
+#### Create a new Project for Prototype 2
+> The first thing we need to do is create a new project and import the Prototype 2 starter files.
+
+1. Open Unity Hub and create a New project named “Prototype 2” in your course directory 
+2. Click on the link to access the Prototype 2 starter files, then import them into Unity
+3. Open the Prototype 2 scene and delete the SampleScene without saving
+4. In the top-right of the Unity Editor, change your Layout from Default to your custom layout
+
+#### Add the Player, Animals, and Food
+> Let’s get all of our objects positioned in the scene, including the player, animals, and food.
+
+1. If you want, drag a different material from Course Library > Materials onto the Ground object 
+2. Drag 1 Human, 3 Animals, and 1 Food object into the Hierarchy
+3. Rename the character “Player”, then reposition the animals and food so you can see them
+4. Adjust the XYZ scale of the food so you can easily see it from above
+#### Get the user’s horizontal input
+
+> If we want to move the Player left-to-right, we need a variable tracking the user’s input.
+
+1. In your Assets folder, create a “Scripts” folder, and a “PlayerController” script inside
+2. Attach the script to the Player and open it
+3. At the top of PlayerController.cs, declare a new public float horizontalInput 
+4. In Update(), set horizontalInput =  Input.GetAxis(“Horizontal”), then test to make sure it works in the inspector
+```{c#}
+public float horizontalInput;
+
+void Update()
+{
+  horizontalInput = Input.GetAxis("Horizontal");
+}
+```
+
+
+#### Move the player left-to-right
+
+> We have to actually use the horizontal input to translate the Player left and right.
+
+1. Declare a new public float speed = 10.0f; 
+2. In Update(), Translate the player side-to-side based on horizontalInput and speed
+```{c#}
+public float horizontalInput;
+public float speed = 10.0f;
+
+void Update()
+{
+  horizontalInput = Input.GetAxis("Horizontal");
+  transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+}
+
+
+```
+
+#### Keep the player inbounds
+> We have to prevent the player from going off the side of the screen with an if-then statement.
+
+1. In Update(), write an if-statement checking if the player’s left X position is less than a certain value
+2. In the if-statement, set the player’s  position to its current position, but with a fixed X location
+
+
+ ```{c#}
+void Update()
+{
+  if (transform.position.x < -10)
+  {
+    transform.position = new Vector3(-10, transform.position.y, transform.position.z);
+  }
+}
+
+```
+#### Clean up your code and variables
+
+> We need to make this work on the right side, too, then clean up our code.
+
+1. Repeat this process for the right side of the screen
+2. Declare new xRange variable, then replace the hardcoded values with them
+3. Add comments to your code
+
+ ```{c#}
+public float xRange = 10;
+void Update()
+{
+  // Keep the player in bounds
+  if (transform.position.x < -xRange)
+  {
+    transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+  }
+  if (transform.position.x > xRange)
+  {
+    transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+  }
+}
+
+```
+
+#### Lesson Recap
+
+New Functionality
+
+- The player can move left and right based on the user’s left and right key presses
+- The player will not be able to leave the play area on either side
+
+New Concepts & Skills
+
+- Adjust object scale
+- If-statements
+- Greater/Less than operators
+
+### Lesson 2.2 - Food Flight
+
+#### Introduction
+
+#### Make the projectile fly forwards
+> The first thing we must do is give the projectile some forward movement so it can zip across the scene when it’s launched by the player.
+
+1. Create a new “MoveForward” script, attach it to the food object, then open it
+2. Declare a new public float speed variable;
+3. In **Update()**, add transform.Translate(Vector3.forward * Time.deltaTime * speed);, then save
+4. In the **Inspector**, set the projectile’s **speed** variable, then test
+
+```{c#}
+public float speed = 40.0f;
+
+void Update()
+{
+  transform.Translate(Vector3.forward * Time.deltaTime * speed); 
+}
+```
+
+#### Make the projectile into a prefab
+> Now that our projectile has the behavior we want, we need to make it into a prefab it so it can be reused anywhere and anytime, with all its behaviors included.
+
+1. Create a new “Prefabs” folder, drag your food into it, and choose **Original Prefab**
+2. In PlayerController.cs, declare a new public GameObject projectilePrefab; variable
+3. Select the Player in the hierarchy, then drag the object from your Prefabs folder onto the new Projectile Prefab box in the inspector
+4. Try dragging the projectile into the scene at runtime to make sure they fly
+
+
+#### Test for spacebar press
+> Now that we have a projectile prefab assigned to PlayerController.cs, the player needs a way to launch it with the space bar.
+
+
+1. In PlayerController.cs, in Update(), add an if-statement checking for a spacebar press:
+if (Input.GetKeyDown(KeyCode.Space)) {
+2. Inside the if-statement, add a comment saying that you should // Launch a projectile from the player
+
+#### Launch projectile on spacebar press
+> We’ve created the code that tests if the player presses spacebar, but now we actually need spawn a projectile when that happens
+
+1. Inside the if-statement, use the  Instantiate method to spawn a projectile at the player’s location with the prefab’s rotation
+
+```{c#}
+
+if (Input.GetKeyDown(KeyCode.Space))
+{
+  Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation); 
+}
+```
+
+#### Make animals into prefabs
+> The projectile is now a prefab, but what about the animals? They need to be prefabs too, so they can be instantiated during the game.
+
+1. Rotate all animals on the Y axis by 180 degrees to face down
+2. Select all three animals in the hierarchy and Add Component > Move Forward 
+3. Edit their speed values and test to see how it looks
+4. Drag all three animals into the Prefabs folder, choosing “Original Prefab”
+5. Test by dragging prefabs into scene view during gameplay
+
+
+#### Destroy projectiles offscreen
+
+> Whenever we spawn a projectile, it drifts past the play area into eternity. In order to improve game performance, we need to destroy them when they go out of bounds.
+
+1. Create “DestroyOutOfBounds” script and apply it to the projectile
+2. Add a new private float topBound variable and initialize it = 30;
+3. Write code to destroy if out of top bounds if (transform.position.z > topBound) {
+Destroy(gameObject); }
+4. In the Inspector Overrides drop-down, click Apply all to apply it to prefab
+
+```{c#}
+private float topBound = 30.0f;
+
+void Update() {
+  if(transform.position.z > topBound) {
+    Destroy(gameObject);
+  }
+}
+```
+
+#### Destroy animals offscreen
+> If we destroy projectiles that go out of bounds, we should probably do the same for animals. We don’t want critters getting lost in the endless abyss of Unity Editor...
+
+
+1. Create else-if statement to check if objects are beneath lowerBound:
+else if (transform.position.z > topBound)
+2. Apply the script to all of the animals, then Override the prefabs
+
+```{c#}
+private float topBound = 30.0f;
+private float lowerBound = -10.0f;
+
+void Update() {
+  if(transform.position.z > topBound) {
+    Destroy(gameObject);
+  }  else if(transform.position.z < lowerBound) {
+    Destroy(gameObject);
+  }
+}
+```
+
+#### Lesson Recap
+
+New Functionality
+
+- The player can press the Spacebar to launch a projectile prefab,
+- Projectile and Animals are removed from the scene if they leave the screen
+
+New Concepts & Skills
+
+- Create Prefabs
+- Override Prefabs
+- Test for Key presses
+- Instantiate objects
+- Destroy objects 
+- Else-if statements
+
+### Lesson 2.3 - Random Animal Stampede
+
+#### Introduction
+
+#### Create a spawn manager
+
+> If we are going to be doing all of this complex spawning of objects, we should have a dedicated script to manage the process, as well as an object to attach it to.
 
 
 
+1. In the hierarchy, create an empty object called “SpawnManager” 
+2. Create a new script called “SpawnManager”, attach it to the Spawn Manager, and open it
+3. Declare new public GameObject[ ] animalPrefabs; 
+4. In the inspector, change the Array size to match your animal count, then assign your animals by dragging them in
+
+#### Spawn an animal if S is pressed
+
+>We’ve created an array and assigned our animals to it, but that doesn’t do much good until we have a way to spawn them during the game. Let’s create a temporary solution for choosing and spawning the animals.
 
 
+1. In Update(), write an if-then statement to instantiate a new animal prefab at the top of the screen if S is pressed
+2. Declare a new public int animalIndex and incorporate it in the Instantiate call, then test editing the value in the Inspector
+
+```{c#}
+public GameObject[] animalPrefabs;
+public int animalIndex;
+
+void Update() {
+  if(Input.GetKeyDown(KeyCode.S)) {
+    Instantiate(animalPrefabs[animalIndex], new Vector3(0,0,20), animalPrefabs[animalIndex].transform.rotation);
+  }
+}
+```
+
+#### Spawn random animals from array
+
+> We can spawn animals by pressing S, but doing so only spawns an animal at the array index we specify. We need to randomize the selection so that S can spawn a random animal based on the index, without our specification.
+
+1. In the if-statement checking if S is pressed, generate a random int animalIndex  between 0 and the length of the array
+2. Remove the global animalIndex variable, since it is only needed locally in the if-statement
 
 
+```{c#}
+public GameObject[] animalPrefabs;
 
- 
- 
+
+void Update() {
+  if(Input.GetKeyDown(KeyCode.S)) {
+    int animalIndex = Random.Range(0, animalPrefabs.Length);
+    Instantiate(animalPrefabs[animalIndex], new Vector3(0,0,20), animalPrefabs[animalIndex].transform.rotation);
+  }
+}
+```
+
+#### Randomize the spawn location
+
+> We can press S to spawn random animals from animalIndex, but they all pop up in the same place! We need to randomize their spawn position, so they don’t march down the screen in a straight line.
+
+1. Replace the X value for the Vector3 with Random.Range(-20, 20), then test
+2. Within the if-statement, make a new local Vector3 spawnPos variable 
+3. At the top of the class, create private float variables for spawnRangeX and spawnPosZ
+
+```{c#}
+public GameObject[] animalPrefabs;
+private float spawnRangeX = 10;
+private float spawnPosZ = 20;
+
+
+void Update() {
+  if(Input.GetKeyDown(KeyCode.S)) {
+    int animalIndex = Random.Range(0, animalPrefabs.Length);
+    Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX,spawnRangeX), 0, spawnPosZ);
+    Instantiate(animalPrefabs[animalIndex], spawnPos, animalPrefabs[animalIndex].transform.rotation);
+  }
+}
+```
+
+#### Change the perspective of the camera
+
+>Our Spawn Manager is coming along nicely, so let’s take a break and mess with the camera.Changing the camera’s perspective might offer a more appropriate view for this top-down game.
+
+1. Toggle between Perspective and Isometric view in Scene view to appreciate the difference
+2. Select the camera and change the Projection from “Perspective” to “Orthographic”
+
+#### Lesson Recap
+
+New Functionality
+
+- The player can press the S to spawn an animal
+- Animal selection and spawn location are randomized
+- Camera projection (perspective/orthographic) selected
+
+New Concepts & Skills
+
+- Spawn Manager
+- Arrays
+- Keycodes
+- Random generation
+- Local vs Global variables
+- Perspective vs Isometric projections
+
+
+### Lesson 2.4 - Collision Decisions
+
+#### Introduction
+
+#### Make a new method to spawn animals
+
+> Our Spawn Manager is looking good, but we’re still pressing S to make it work! If we want the game to spawn animals automatically, we need to start by writing our very first custom function.
+
+1. In SpawnManager.cs, create a new void SpawnRandomAnimal() {} function beneath Update()
+2. Cut and paste the code from the if-then statement to the new function
+3. Call SpawnRandomAnimal(); if S is pressed
+
+
+#### Spawn the animals at timed intervals
+
+> We’ve stored the spawn code in a custom function, but we’re still pressing S! We need to spawn the animals on a timer, so they randomly appear every few seconds.
+
+1. In Start(), use InvokeRepeating to spawn the animals based on an interval, then test.
+2. Remove the if-then statement that tests for S being pressed
+3. Declare new private startDelay and spawnInterval variables then playtest and tweak variable values
+
+
+```{c#}
+private float startDelay = 2;
+private float spawnInterval = 1.5f;
+
+void Start(){
+  InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval);
+}
+```
+
+#### Add collider and trigger components
+> Animals spawn perfectly and the player can fire projectiles at them, but nothing happens when the two collide! If we want the projectiles and animals to be destroyed on collision, we need to give them some familiar components - “colliders.”
+
+
+1. Double-click on one of the animal prefabs, then Add Component > Box Collider
+2. Click Edit Collider, then drag the collider handles to encompass the object
+3. Check the “Is Trigger” checkbox
+4. Repeat this process for each of the animals and the projectile
+5. Add a RigidBody component to the projectile and uncheck “use gravity” 
+
+#### Destroy objects on collision
+
+> Now that the animals and the projectile have Box Colliders with triggers, we need to code a new script in order to destroy them on impact.
+
+
+1. Create a new DetectCollisions.cs script, add it to each animal prefab, then open it
+2. Before the final } add OnTriggerEnter function using autocomplete
+3. In OnTriggerEnter, put Destroy(gameObject);, then test
+4. In OnTriggerEnter, put Destroy(other.gameObject);
+
+```{c#}
+
+
+void onTriggerEnter(Collider other){
+  Destroy(gameObject);
+  Destroy(other.gameObject);
+}
+```
+
+#### Trigger a “Game Over” message
+
+> The player can defend their field against animals for as long as they wish,  but we should let them know when they’ve lost with a “Game Over” message if any animals get past the player.
+
+1. In DestroyOutOfBounds.cs, in the else-if condition that checks if the animals reach the bottom of the screen, add a Game Over messsage:
+Debug.Log(“Game Over!”) 
+2. Clean up your code with comments
+3. If using Visual Studio, Click Edit > Advanced > Format document to fix any indentation issues 
+(On a Mac, click Edit > Format > Format Document)
+
+
+#### Lesson Recap
+
+New Functionality
+
+- Animals spawn on a timed interval and walk down the screen 
+- When animals get past the player, it triggers a “Game Over” message
+- If a projectile collides with an animal, both objects are removed
+
+New Concepts & Skills
+
+- Create custom methods/functions
+- InvokeRepeating() to repeat code
+- Colliders and Triggers 
+- Override functions
+- Log Debug messages to console
